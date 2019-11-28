@@ -1,0 +1,51 @@
+<div class="example-container mat-elevation-z8">
+
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <table class='awardeelist-tbl' mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="recipient">
+            <th mat-header-cell *matHeaderCellDef> Recipient </th>
+            <td mat-cell *matCellDef="let element"> {{element.recipientId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="badgeName">
+            <th mat-header-cell *matHeaderCellDef> Badge Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.badgeName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="issuedOn">
+            <th mat-header-cell *matHeaderCellDef> Issued On </th>
+            <td mat-cell *matCellDef="let element"> {{element.issuedOn}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="verb">
+            <th mat-header-cell *matHeaderCellDef> Verb </th>
+            <td mat-cell *matCellDef="let element"> {{element.verb}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="target">
+            <th mat-header-cell *matHeaderCellDef> Target </th>
+            <td mat-cell *matCellDef="let element"> {{element.target}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="object">
+            <th mat-header-cell *matHeaderCellDef> Object </th>
+            <td mat-cell *matCellDef="let element"> {{element.object}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Revoke </th>
+            <td mat-cell *matCellDef="let element">
+                <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="8%">
+                    <button class='awardeelist-btn' mat-raised-button color="accent" (click)="revoke(element)">Revoke</button>
+                    <!-- <button class='awardeelist-btn' mat-raised-button color="primary" (click)="view(element)">View</button> -->
+                    <mat-icon class="eye-icon-view" (click)="view(element)">remove_red_eye</mat-icon>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

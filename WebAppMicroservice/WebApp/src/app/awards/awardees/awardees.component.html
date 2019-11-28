@@ -1,0 +1,143 @@
+<!-- <section fxLayout="row" fxLayoutGap="5%">
+    <section class="awardee-img ">
+        <img class="mat-elevation-z8" [src]="badgeImage" alt="badge Image !" />
+        <h2 class="badge-details-name">{{badgeName}}</h2>
+    </section>
+    <section class="badge-details" fxLayout="column">
+        <h2>Description: </h2>
+        <p>{{badge.description}}</p>
+        <h2>Criteria:</h2>
+        <p>{{badge.criteria}}</p>
+        <section fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+            <section *ngFor="let tag of tagsColln">
+                <mat-chip-list>
+                    <mat-chip color="accent" selected>{{tag.name}}</mat-chip>
+                </mat-chip-list>
+            </section>
+        </section>
+    </section>
+</section>
+<section class="issuerDropDownList" fxLayout="row" fxlayoutAlign="space-evenly center" fxLayoutGap="">
+    <div>
+        <h3>Issuer:</h3>
+        <mat-form-field appearance="outline">
+            <mat-label>Choose Issuer</mat-label>
+            <mat-select [(ngModel)]="selectedIssuer" (ngModelChange)="onIssuerSelection()" [(value)]="selected" [formControl]="issuerList" required>
+                <mat-option *ngFor="let issuer of issuers" [value]="issuer.issuerName">
+                    {{issuer.issuerName}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="issuerList.hasError( 'required') ">Please choose an issuer</mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" [disabled]="disabledAwardBtn" (click)="awardForm()">Award Badge</button>
+
+    </div>
+</section>
+<section class="tableSection">
+    <div class="mat-elevation-z8 ">
+        <table mat-table [dataSource]="dataSource">
+
+
+            <ng-container matColumnDef="recipientName">
+                <th mat-header-cell *matHeaderCellDef> Awarded Users </th>
+                <td mat-cell *matCellDef="let element"> {{element.recipientName}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="issuedOn">
+                <th mat-header-cell *matHeaderCellDef> Issued On </th>
+                <td mat-cell *matCellDef="let element"> {{element.issuedOn}}/10/2019 12:12 pm IST </td>
+            </ng-container>
+
+            <ng-container matColumnDef="assertionNarrative">
+                <th mat-header-cell *matHeaderCellDef> Revoke </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="accent" (click)="revoke()">Revoke</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</section>
+<section class="tableSection" *ngIf="!showTable">
+    <mat-card class="mat-elevation-z8">
+        <mat-card-title>No Data To Show</mat-card-title>
+    </mat-card>
+</section> -->
+<section fxLayout="row" fxLayoutGap="5%">
+    <section class="awardee-img ">
+        <img class="mat-elevation-z8" [src]="badgeImage" alt="badge Image !" />
+        <h2 class="badge-details-name">{{badgeName}}</h2>
+    </section>
+    <section class="badge-details" fxLayout="column">
+        <h2>Description: </h2>
+        <p>{{badge.description}}</p>
+        <h2>Criteria:</h2>
+        <p>{{badge.criteria}}</p>
+        <section fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+            <section *ngFor="let tag of tagsColln">
+                <mat-chip-list>
+                    <mat-chip color="accent" selected>{{tag.name}}</mat-chip>
+                </mat-chip-list>
+            </section>
+        </section>
+    </section>
+</section>
+<section class="issuerDropDownList" fxLayout="row" fxlayoutAlign="space-evenly center" fxLayoutGap="">
+    <div>
+        <h3>Issuer:</h3>
+        <mat-form-field appearance="outline">
+            <mat-label>Choose Issuer</mat-label>
+            <mat-select [(ngModel)]="selectedIssuer" (ngModelChange)="onIssuerSelection()" [(value)]="selected" [formControl]="issuerList" required>
+                <mat-option *ngFor="let issuer of issuers" [value]="issuer.issuerName">
+                    {{issuer.issuerName}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="issuerList.hasError( 'required') ">Please choose an issuer</mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" [disabled]="disabledAwardBtn" (click)="awardForm()">Award Badge</button>
+
+    </div>
+</section>
+<section class="tableSection">
+    <div class="mat-elevation-z8 ">
+        <table mat-table [dataSource]="dataSource">
+
+
+            <ng-container matColumnDef="recipientName">
+                <th mat-header-cell *matHeaderCellDef> Awarded Users </th>
+                <td mat-cell *matCellDef="let element"> {{element.recipientName}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="issuedOn">
+                <th mat-header-cell *matHeaderCellDef> Issued On </th>
+                <td mat-cell *matCellDef="let element"> {{element.issuedOn}}/10/2019 12:12 pm IST </td>
+            </ng-container>
+
+            <ng-container matColumnDef="assertionNarrative">
+                <th mat-header-cell *matHeaderCellDef> Revoke </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="accent" (click)="revoke(element)">Revoke</button>
+                    <app-revocation-dialog-box *ngIf="false"></app-revocation-dialog-box>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</section>
+<section class="tableSection" *ngIf="!showTable">
+    <mat-card class="mat-elevation-z8">
+        <mat-card-title>No Data To Show</mat-card-title>
+    </mat-card>
+</section>

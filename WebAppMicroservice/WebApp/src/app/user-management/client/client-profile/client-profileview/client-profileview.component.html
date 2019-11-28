@@ -1,0 +1,51 @@
+<div class="view">
+    <div class="body" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutGap="30px">
+        <div class="heading">
+            <b>
+        <h1 class="mat-h1">{{client.profileName}}</h1>
+      </b>
+        </div>
+        <div class="btn">
+            <button class="editData" (click)="editProfile()" color="accent" mat-mini-fab>
+        <mat-icon>edit</mat-icon>
+      </button>
+        </div>
+    </div>
+    <div class="data">
+        <div class="body" fxLayout="row" fxLayout.xs="column">
+            <div class="left" fxFlex="30" fxLayout.xs="column">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <img [src]="client.avatarURL">
+                    <b>
+            <h2>
+              <p class="orgName mat-body">{{client.organisationName}}</p>
+            </h2>
+          </b>
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <mat-icon class="orgurl">account_balance</mat-icon>
+                        <p class="notOrgName mat-body">
+                            {{client.organisationURL}}
+                        </p>
+                    </div>
+                    <div fxLayout="row" class="orgemail" fxLayoutGap="10px">
+                        <mat-icon class="email">email</mat-icon>
+                        <p class="notOrgName mat-body">
+                            {{client.orgEmail}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex="70" class="description" fxLayout.xs="column">
+                <p class="mat-body-1">Profile Objective</p>
+                <h4 class="mat-h4">{{client.description}}
+                </h4>
+                <p class="mat-body-1">About Organisation</p>
+                <h4 class="mat-h4">{{client.aboutOrg}}
+                </h4>
+            </div>
+        </div>
+    </div>
+ </div>
+ 
+ 
+ 

@@ -1,0 +1,79 @@
+<section class="assertions">
+    <form [formGroup]="awardBadgeForm">
+        <section fxLayout="row" fxLayoutGap="15%" class="recipient-info">
+            <section class="award-badge-img">
+                <img [src]="badgeImage" alt="Image Not Found" />
+                <h2>{{badgeName}}</h2>
+            </section>
+            <section fxLayout="column">
+                <h2>Recipient Information</h2>
+                <mat-form-field appearance="outline" class="flex-fields">
+                    <mat-label>Recipient Name</mat-label>
+                    <input matInput formControlName="recipientName" placeholder="Name" />
+                    <mat-error *ngIf="awardBadgeForm.invalid && awardBadgeForm.touched">
+                        Hint: Choose a name with minimum length of 3 , maximum length of 20 which doesn't contain special characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="flex-fields">
+                    <mat-label>Recipient Email</mat-label>
+                    <input matInput type="email" formControlName="recipientId" placeholder="Email" />
+                    <mat-error *ngIf="awardBadgeForm.invalid && awardBadgeForm.touched">
+                        Hint: Please Provide Correct Email Defination like emailAddress11@example.com
+                    </mat-error>
+                </mat-form-field>
+                <mat-checkbox name="emailCheckBox">Notify Recipient By Email!</mat-checkbox>
+            </section>
+        </section>
+        <section class="narrative-styling">
+            <h2>Narrative</h2>
+            <mat-form-field appearance="fill">
+                <mat-label>How Did The Recipient Earn This Badge ?</mat-label>
+                <textarea row="4" class="narrative-question" matInput formControlName="assertionNarrative"></textarea>
+            </mat-form-field>
+        </section>
+        <section fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="start center" class="evidence-styling">
+            <mat-toolbar>
+                <h2><strong>Evidence</strong></h2>
+            </mat-toolbar>
+            <button mat-mini-fab *ngIf="displayEvidence" (click)="createEvidenceForm()" color="accent">+</button>
+        </section>
+        <section formArrayName="evidence" class="evidence-styling">
+            <section *ngFor="let group of evidenceArray.controls; let i = index" [formGroupName]="i">
+                <section fxLayout="column">
+                    <mat-form-field appearance="outline">
+                        <mat-label>How Is This Badge Earned?</mat-label>
+                        <input class="evidence-question-how" matInput formControlName="narrative" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>URL To Evidence This Badge !</mat-label>
+                        <input class="evidence-URI" matInput formControlName="evidenceURI" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Evidence Name</mat-label>
+                        <input class="evidence-URI" matInput formControlName="name" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Evidence Description</mat-label>
+                        <textarea row="4" class="evidence-URI" matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Evidence Genre</mat-label>
+                        <input class="evidence-URI" matInput formControlName="genre" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Evidence Audience</mat-label>
+                        <input class="evidence-URI" matInput formControlName="audience" />
+                    </mat-form-field>
+                </section>
+                <section fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1%">
+                    <button mat-mini-fab (click)="addEvidence(i)" color="accent">+</button>
+                    <button mat-mini-fab (click)="removeEvidence(i)" color="warn">-</button>
+                </section>
+            </section>
+        </section>
+        <section class="cancel-submit-btn" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1%">
+            <button mat-raised-button color="accent" (click)="onCancel()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!awardBadgeForm.valid">Award</button>
+        </section>
+    </form>
+</section>

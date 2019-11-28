@@ -1,0 +1,71 @@
+<ng-container *ngFor="let issuer of issuers">
+    <button mat-icon-button (click)="editIssuerProfile(issuer.issuerProfileId)" class="edit-button">
+                <mat-icon class="editIcon">edit</mat-icon>
+              </button>
+    <div fxLayout="row" fxLayoutAlign="start center" class="profile-view" fxLayoutGap="4%">
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+            <div>
+                <h2 class="mat-headline">{{issuer.issuerName}}</h2>
+            </div>
+            <div class="image-div">
+                <img [src]="issuer.issuerAvatarURL">
+            </div>
+            <div>
+                <div class="org" fxLayout="row">
+                    <mat-icon>account_balance</mat-icon>
+                    <p class="notOrgName body mat-h3"> &nbsp;{{issuer.issuerOrganizationURL}}</p>
+                </div>
+                <div class="email" fxLayout="row">
+                    <mat-icon>email</mat-icon>
+                    <p class="notOrgName body mat-h3"> &nbsp;{{issuer.issuerEmail}}</p>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between start">
+            <div class="profileObjective">
+                <h3 class="mat-title">Profile Objective</h3>
+
+                <p class="mat-h4 pObjective">{{issuer.profileObjective}}</p>
+
+            </div>
+
+            <div class="profDesc">
+                <h3 class="mat-title">Issuer Description</h3>
+
+                <p class="mat-h4 pDescription">{{issuer.issuerDescription}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div fxLayout="row" class="body" fxLayoutGap="5%">
+
+        <div fxFlex="30" class="left" fxLayoutGap="2%">
+
+            <div fxLayout="column" fxLayoutAlign="center center">
+
+                <img [src]="issuer.issuerAvatarURL">
+                <div class="orgUrl">
+                    <p class="notOrgName" class="body mat-body">{{issuer.issuerOrgUrl}}</p>
+
+                    <p class="notOrgName" class="body mat-body">{{issuer.issuerEmail}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div fxFlex="70">
+
+            <h3 class="mat-title">Profile Objective</h3>
+
+            <p class="body mat-body">{{issuer.profileObjective}}</p>
+
+            <h3 class="mat-title">Issuer Description</h3>
+
+            <p class="body mat-body">{{issuer.issuerDescription}}</p>
+
+        </div>
+
+    </div> -->
+
+</ng-container>

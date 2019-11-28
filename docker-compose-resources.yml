@@ -1,0 +1,60 @@
+version: '3'
+services:
+
+  # mongodb:
+  #   image: mongo:latest
+  #   deploy:
+  #     restart_policy:
+  #       condition: always
+  #   volumes:
+  #     - $HOME/data/metrixDB:/data/db
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: metrix
+  #     MONGO_INITDB_ROOT_PASSWORD: M3tr1x
+  #   ports:
+  #     - 27017:27017
+  
+  rabbitmq:
+    image: rabbitmq:management
+    deploy:
+      restart_policy:
+        condition: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - $HOME/rabbitmq_data/metrixMQ:/data/db
+    environment:
+      RABBITMQ_DEFAULT_USER: "metrix"
+      RABBITMQ_DEFAULT_PASS: "M3tr1x"
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    deploy:
+      restart_policy:
+        condition: always
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafkabroker:
+    image: wurstmeister/kafka
+    deploy:
+      restart_policy:
+        condition: always
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ADVERTISED_HOST_NAME: 10.20.1.101
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+  redis:
+    image: redis
+    deploy:
+      restart_policy:
+        condition: always
+    ports:
+      - "6379:6379"

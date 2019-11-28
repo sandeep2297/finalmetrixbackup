@@ -1,0 +1,22 @@
+img {
+    border-radius: 50%;
+    max-width: 200px;
+    max-height: 200px;
+    border:2px solid lightgrey;
+}
+button{
+    float:right;
+}
+/* .profileName{
+    background-color: #F5F5F5;
+}
+.orgURL{
+    background-color: #F5F5F5;
+}
+.orgName{
+    background-color: #F5F5F5;
+} */
+.cancel{
+    background-color: lightgrey;
+    margin-right: 19px;
+}

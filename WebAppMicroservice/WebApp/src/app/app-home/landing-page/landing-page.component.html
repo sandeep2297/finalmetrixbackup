@@ -1,0 +1,80 @@
+<div class="catalina-blue-theme" fxLayout="column" fxLayout.xs="column" fxLayoutGap="5%">
+    <div fxFlex fxLayoutAlign="center center">
+        <h1 class="mat-display-3">METRIX</h1>
+    </div>
+    <div fxFlex fxLayoutAlign="center center">
+        <h2 class="mat-h2">A pluggable platform, to analyse user activity data and issue awards</h2>
+    </div>
+    <div fxFlex fxLayoutAlign="center center"><button mat-raised-button (click)="openDialog()">GET STARTED
+    </button></div>
+</div>
+<!----Services-->
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" class="services">
+    <!--For Open Badges-->
+    <div align="center" fxLayout="column" fxLayout.xs="column" fxLayoutGap="1%" fxFlex="33%" class="openbadge">
+        <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="7%">
+            <mat-icon>stars</mat-icon>
+            <h3 class="mat-h3">OPEN BADGES</h3>
+        </div>
+        <p class="details mat-body">Metrix follows Open Badges Specification which maintains assertion of badges and provides encryption of badges so that verification and validation of badges can be done easily.</p>
+    </div>
+    <!------->
+    <!-- AS 2.0-->
+    <div align="center" class="activitystream" fxFlex="33%" fxLayout="column" fxLayout.xs="column" fxLayoutGap="1%">
+        <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="7%">
+            <mat-icon class="activityStreamIcon">library_books</mat-icon>
+            <h3 class="mat-h3">ACTIVITY STREAM 2.0</h3>
+        </div>
+        <p class="details mat-body">Metrix uses Activity Stream 2.0 that provides a JSON-based syntax that is sufficient to express metadata about activities in a rich, human-friendly but machine-processable and extensible manner.
+        </p>
+    </div>
+    <!------->
+    <!-- SECURE-->
+    <div align="center" class="secure" fxFlex="33%" fxLayout="column" fxLayout.xs="column" fxLayoutGap="1%">
+        <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="7%">
+            <mat-icon class="secure">lock_outline</mat-icon>
+            <h3 class="mat-h3">SECURE</h3>
+        </div>
+        <p class="details mat-body">Metrix supports OAuth access only with JWT authentication, so don't worry, your data is safe with us.</p>
+    </div>
+    <!------->
+</div>
+<!----What we do-->
+<div class="description" fxLayout="column" fxLayout.xs="column" fxLayoutGap="2%">
+    <div class="motto" fxFlex fxLayoutAlign="center center">
+        <p class="baseHeader mat-h1">WHAT WE DO?</p>
+    </div>
+    <!--GIVE-->
+    <div class="description" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="18%">
+        <div fxFlex="33%" fxLayout="column" fxLayout.xs="column" fxLayoutGap="1%">
+            <div class="motto" fxFlex fxLayoutAlign="center center">
+                <h3 class="mat-h3">GET</h3>
+            </div>
+            <div fxFlex fxLayoutAlign="center center">
+                <p class="details mat-body-strong">User Activity Data</p>
+            </div>
+        </div>
+        <!------->
+        <!-- Convert-->
+        <div fxFlex="33%" fxLayout="column" fxLayout.xs="column" fxLayoutGap="1%">
+            <div class="motto" fxFlex fxLayoutAlign="center center">
+                <h3 class="mat-h3">CONVERT</h3>
+            </div>
+            <div fxFlex fxLayoutAlign="center center">
+                <p class="details mat-body-strong">User Activity Data to AS 2.0</p>
+            </div>
+        </div>
+        <!------->
+        <!-- Generate-->
+        <div fxFlex="33%" fxLayout="column" fxLayout.xs="column" fxLayoutGap="1%">
+            <div class="motto" fxFlex fxLayoutAlign="center center">
+                <h3 class="mat-h3">GENERATE</h3>
+            </div>
+            <div fxFlex fxLayoutAlign="center center">
+                <p class="details mat-body-strong">Rewards and Exciting prizes.</p>
+            </div>
+        </div>
+        <!------->
+    </div>
+</div>
+<app-footer></app-footer>

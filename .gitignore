@@ -1,0 +1,34 @@
+HELP.md
+.mvn/
+target/
+m2/
+WebAppMicroservice/src/main/resources/static/**
+.metadata/
+.classpath
+bin/
+.settings/
+.project
+.history/
+mvnw
+mvnw.cmd
+.attach?
+!**/src/main/**
+!**/src/test/**
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+### Dependencies ###
+**/m2
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+### VS Code ###
+.vscode/
+/.metadata/

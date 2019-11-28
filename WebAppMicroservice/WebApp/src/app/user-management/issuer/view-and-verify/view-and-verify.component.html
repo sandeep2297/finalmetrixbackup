@@ -1,0 +1,62 @@
+<section class="badgeDetailsView">
+    <div fxLayoutAlign="end">
+        <mat-icon class="backToPage" (click)="onClose()">clear</mat-icon>
+    </div>
+    <section fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5%">
+        <div class="assertion-badge-details">
+            <img class="mat-elevation-z6 imageSize" [src]="assertionData.image" alt="Badge Image Not Found">
+            <!-- <img class="mat-elevation-z6 imageSize" src="../../../assets/images/demoBadge.jpeg"
+                alt="Badge Image Not Found"> -->
+            <div class="badge-name">{{assertionData.badgeName}}</div>
+        </div>
+        <div class="assertion-recipient-details">
+            <div>
+                <div *ngIf="assertionData.recipient.recipientName != null" fxLayout="row" fxLayoutGap="10px">
+                    <mat-icon class="recipient-name">person</mat-icon>
+                    <p class="recipient-details mat-body">
+                        {{assertionData.recipient.recipientName}}
+                    </p>
+                </div>
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <mat-icon class="recipient-email">email</mat-icon>
+                    <p class="recipient-details mat-body">
+                        {{assertionData.recipient.recipientId}}
+                    </p>
+                </div>
+            </div>
+            <div class="narrative">{{assertionData.assertionNarrative}}</div>
+        </div>
+    </section>
+    <section class="evidence-section">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Evidence
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Evidence is submitted proof that an earner meets the criteria for a badge they are applying for.
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <section *ngFor="let evidence of assertionData.evidence">
+                    <mat-list>
+                        <h3 mat-subheader>URI: {{evidence.evidenceURI}}</h3>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>book</mat-icon>
+                            <h4 mat-line>Genre: {{evidence.genre}}</h4>
+                            <p mat-line> {{evidence.narrative}} </p>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                </section>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </section>
+</section>
+<section class="valid" *ngIf="valid">
+    Valid Badge
+</section>
+<section class="invalid" *ngIf="!valid">
+</section>
+<button mat-raised-button color="accent" (click)="verify()" class="verify-button">Verify</button>
+

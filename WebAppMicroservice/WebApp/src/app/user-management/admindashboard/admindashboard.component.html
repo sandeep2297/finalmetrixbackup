@@ -1,0 +1,31 @@
+<mat-toolbar>
+    <!-- <mat-icon color="pink">home</mat-icon> -->
+    CLIENT STATISTICS
+</mat-toolbar>
+<section fxlayout.xs="column" class="body">
+    <section fxLayout="row" fxLayout="row wrap" fxLayoutGap="15px" fxlayout.xs="column">
+        <ng-container *ngFor="let client of clientArray, let i = index">
+            <mat-card class="client-card">
+                <!-- <section class="heading" fxLayout="row" fxLayoutGap="20px" fxlayout.xs="column"> -->
+                <mat-card-header fxLayout="row" fxLayoutGap="5px" fxlayout.xs="column">
+                    <img mat-card-avatar [src]="client.avatarURL" class="avatar">
+                    <b><mat-card-title>{{client.profileName}}</mat-card-title></b>
+                </mat-card-header>
+                <!-- </section> -->
+                <mat-card-content>
+                    <p>{{client.aboutOrg}}</p>
+                </mat-card-content>
+                <mat-card-footer>
+                    <button mat-raised-button (click)="issuerList(client)" mat-raised-button matBadge="{{countArray[i]}}" matBadgePosition="aboveafter" matBadgeColor="warn" class="issuer">
+                        <mat-icon>people_outline</mat-icon>
+                        ISSUERS
+                    </button>
+                    <button mat-raised-button (click)="pipelineList(client)" matBadge="{{count2}}" matBadgePosition="aboveafter" matBadgeColor="warn" class="pipeline">
+                    <mat-icon>tune</mat-icon>
+                    PIPELINES
+                </button>
+                </mat-card-footer>
+            </mat-card>
+        </ng-container>
+    </section>
+</section>

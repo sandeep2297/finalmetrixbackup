@@ -1,0 +1,75 @@
+<mat-toolbar>
+    <h1 class="mat-h1">Issuer Profiles</h1>
+</mat-toolbar>
+<section class="flex" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
+    <section class="search">
+        <form>
+            <!-- Search bar to search for different issuers according to issuer name -->
+            <mat-form-field class="searchMenu">
+                <mat-label>
+                    <mat-icon>search</mat-icon> Search Issuer Profiles</mat-label>
+                <input type="text" matInput placeholder="Search" [(ngModel)]="searchTerm" name="search">
+            </mat-form-field>
+        </form>
+    </section>
+    <!-- Button to add new issuer profile -->
+    <section class="buttons">
+        <button mat-raised-button color="primary" (click)="addIssuer()"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Add Issuer Profile</button>
+    </section>
+</section>
+<section class="homeContent" *ngIf="viewJoyRide">
+    <div class="flexcontainer" fxLayout="column" fxLayout.xs="column" fxLayoutGap="5%">
+        <!-- Issuer Profile -->
+        <div class="issuer" fxFlex fxFlex="row" fxLayoutGap="3%" class="fill-div">
+            <div>
+                <img src="../../assets/images/issuerprofile.png" height="80">
+            </div>
+            <div fxFlex>
+                <h2 class="mat-h1"> Issuer Profile</h2>
+                <p class="text mat-h2">An Issuer will setup pipelines and create rules to award points or badges to the users. </p>
+            </div>
+        </div>
+
+        <!--  -->
+
+        <!-- Pipeline Settings -->
+        <div class="pipeline" fxFlex="row" fxLayoutGap="3%" class="fill-div pipeline-div">
+            <div>
+                <img src="../../assets/images/pipeline.png" height="80">
+            </div>
+            <div fxFlex>
+                <h2 class="mat-h1"> Setup the Pipeline </h2>
+                <p class="text mat-h2">Pipeline is uesd to create a connection with our application.</p>
+            </div>
+        </div>
+        <!--  -->
+
+        <!---Create Rules-->
+        <div class="rules" fxFlex="row" fxLayoutGap="3%" class="fill-div">
+            <div>
+                <img src="../../assets/images/rules.png" height="80">
+            </div>
+            <div fxFlex>
+                <h2 class="mat-h1"> Create your Rules</h2>
+                <p class="text mat-h2">Rules are the conditions which will be evaluated to award users with badges or points.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section fxLayout="row wrap" fxLayoutGap="5%" class="cards-flex" *ngIf="viewIssuers">
+    <div *ngFor="let issuer of filteredIssuers">
+        <mat-card class="mat-elevation-z8 issuer-card" (click)="goToProfile(issuer.issuerProfileId)">
+            <img mat-card-image [src]="issuer.issuerAvatarURL" alt="Issuer Profile" class="image">
+            <div class="card-headings">
+                <mat-card-title class="mat-h1">{{issuer.issuerName}}</mat-card-title>
+                <mat-card-subtitle class="mat-h3">{{issuer.issuerEmail}}</mat-card-subtitle>
+            </div>
+        </mat-card>
+
+
+    </div>
+</section>

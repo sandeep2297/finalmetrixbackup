@@ -1,0 +1,121 @@
+version: '3'
+services:
+  eureka-server:
+    build: ./DiscoveryServer
+    image: eureka-server:latest
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+#    env_file:
+#      - ./docker_env/production/discoveryserver-properties.env
+    restart: on-failure
+  config-server:
+    build: ./CloudConfigServer
+    image: config-server:latest
+    depends_on:
+      - eureka-server
+    expose:
+      - 8980
+    ports:
+      - 8980:8980
+#    env_file:
+#      - ./docker_env/production/configserver-properties.env
+    restart: on-failure
+  zuul-server:
+    build: ./ApiGatewayServer
+    image: zuul-server:latest
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+#    env_file:
+#      - ./docker_env/production/apigateway-properties.env
+    depends_on:
+      - config-server
+      - eureka-server
+    restart: on-failure
+  user-microservice:
+    build: ./UserMicroservice
+    image: user-microservice:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8001
+    ports:
+      - 8001:8001
+#    env_file:
+#      - ./docker_env/production/usermicroservice-properties.env
+    restart: on-failure
+  webapp-microservice:
+    build: ./WebAppMicroservice
+    image: webapp-microservice:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8002
+    ports:
+      - 8002:8002
+#    env_file:
+#      - ./docker_env/production/webappmicroservice-properties.env
+    restart: on-failure
+  activity-pipeline:
+    build: ./ActivityPipelineMicroservice
+    image: activity-pipeline:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8003
+    ports:
+      - 8003:8003
+#    env_file:
+#      - ./docker_env/production/activitypipeline-properties.env
+    restart: on-failure
+  user-activity-stream-analyzer:
+    build: ./UserActivityStreamAnalyzer
+    image: user-activity-stream-analyzer:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    ports:
+      - 8004:8004
+    expose:
+      - 8004
+#    env_file:
+#      - ./docker_env/production/useractivitystreamanalyzer-properties.env
+    restart: on-failure
+  awards-microservice:
+    build: ./AwardsMicroservice
+    image: awards-microservice:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8005
+#    env_file:
+#      - ./docker_env/production/awardsmicroservice-properties.env
+    ports:
+      - 8005:8005
+    restart: on-failure
+  activity-sink-microservice:
+    build: ./ActivitySinkMicroservice
+    image: activity-sink-microservice:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8006
+#    env_file:
+#      - ./docker_env/production/activitysinkmicroservice-properties.env
+    ports:
+      - 8006:8006
+    restart: on-failure

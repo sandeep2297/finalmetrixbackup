@@ -1,0 +1,57 @@
+.shown-image {
+    height: 200px;
+    width: 200px;
+}
+.form-styling {
+    margin: 2% 10%;
+    /* margin-left: 10%; */
+}
+
+.flex-fields:not(.mat-form-field-infix) {
+    width: 100%;
+}
+
+.alignment-styling {
+    margin-top: 2%;
+}
+
+.flex-fields-different {
+    width: 100%;
+}
+
+.target-name,
+.target-url {
+    width: 100%;
+}
+
+.target-style {
+    width: 100%;
+}
+
+.mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    /* width: 180px; */
+}
+
+.name-description-form {
+    width: 100%;
+}
+
+.form-submit-btn {
+    float: right;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+
+.imageSize {
+    height: 200px;
+    width: 200px;
+}
+
+.default-image {
+    fill-opacity: 0.5;
+}

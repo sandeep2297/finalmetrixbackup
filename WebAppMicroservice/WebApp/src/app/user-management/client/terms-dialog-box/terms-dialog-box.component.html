@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayout.xs="column" fxLayoutAlign="space-evenly center" fxLayoutGap="2%" class="body">
+    <mat-dialog-content>
+        <section align="center" class="mat-h1">Terms and Conditions</section>
+        <p class="mat-body">Welcome to Metrix!</p>
+
+        <p class="mat-body">These terms and conditions outline the rules and regulations for the use of Metrix's Website, located at https://metrix-dev.stackroute.io.
+        </p>
+
+        <p class="mat-body">By accessing this website we assume you accept these terms and conditions. Do not continue to use Metrix if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+        <p class="mat-body">The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions.
+            "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the
+            process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of India.
+            Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
+
+        <p class="mat-body">Metrix processes only Activity Stream 2.0 data, so for evaluation purpose your user activity data will be converted to Activity Stream 2.0</p>
+
+        <p class="mat-body">User data received by Metrix Platform is used for all analysis, client will be solely responsible for analysis of any sensitive data received by Metrix, Metrix will not be responsible for any accusations regrading sensitive data analysis of client.</p>
+
+        <section class="mat-h2">Disclaimer</section>
+        <p class="mat-body">Metrix is a beta product and is not meant for production purpose.</p>
+    </mat-dialog-content>
+    <div align="center">
+        <mat-checkbox (click)="onCheck()">I acknowledge that I have read and agreed to the above Terms and Conditions
+        </mat-checkbox>
+    </div>
+    <button [disabled]="!isActive" mat-raised-button (click)=" closeModalwithPatch()"> I Accept
+  </button>
+</div>

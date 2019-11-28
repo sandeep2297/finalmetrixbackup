@@ -1,0 +1,11 @@
+.exit {
+    float: right;
+}
+
+button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+    background-color: #24316f;
+    margin-top: 5%;
+    margin-right: 45%;
+}

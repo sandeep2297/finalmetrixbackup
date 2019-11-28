@@ -1,0 +1,237 @@
+version: '3'
+services:
+  eureka-server:
+    build: ./DiscoveryServer
+    image: eureka-server:latest
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+    env_file:
+      - ./docker_env/production/discoveryserver-properties.env
+    restart: on-failure
+    volumes:
+      - $HOME/mavenrepo/:/maven/home/
+    environment:
+      MVN_LOCAL_REPO: /maven/home/
+
+  config-server:
+    build: ./CloudConfigServer
+    image: config-server:latest
+    depends_on:
+      - eureka-server
+    expose:
+      - 8980
+    ports:
+      - 8980:8980
+    env_file:
+      - ./docker_env/production/configserver-properties.env
+    restart: on-failure
+    volumes:
+      - $HOME/mavenrepo/:/maven/home/
+    environment:
+      MVN_LOCAL_REPO: /maven/home/
+
+  zuul-server:
+    build: ./ApiGatewayServer
+    image: zuul-server:latest
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    env_file:
+      - ./docker_env/production/apigateway-properties.env
+    depends_on:
+      - config-server
+      - eureka-server
+    restart: on-failure
+    volumes:
+      - $HOME/mavenrepo/:/maven/home/
+    environment:
+      MVN_LOCAL_REPO: /maven/home/
+
+  user-microservice:
+    build: ./UserMicroservice
+    image: user-microservice:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8001
+    ports:
+      - 8001:8001
+    env_file:
+      - ./docker_env/production/usermicroservice-properties.env
+    restart: on-failure
+    volumes:
+      - $HOME/mavenrepo/:/maven/home/
+    environment:
+      MVN_LOCAL_REPO: /maven/home/
+
+  webapp-microservice:
+    build: ./WebAppMicroservice
+    image: webapp-microservice:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8002
+    ports:
+      - 8002:8002
+    env_file:
+      - ./docker_env/production/webappmicroservice-properties.env
+    restart: on-failure
+    volumes:
+      - $HOME/mavenrepo/:/maven/home/
+    environment:
+      MVN_LOCAL_REPO: /maven/home/
+
+  activity-pipeline:
+    build: ./ActivityPipelineMicroservice
+    image: activity-pipeline:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8003
+    ports:
+      - 8003:8003
+    env_file:
+      - ./docker_env/production/activitypipeline-properties.env
+    restart: on-failure
+    volumes:
+      - $HOME/mavenrepo/:/maven/home/
+    environment:
+      MVN_LOCAL_REPO: /maven/home/
+
+  awards-badge-service:
+     build:
+       context: ./AwardsMicroservice
+       dockerfile: Dockerfile_awardbadge
+     image: awards-badge-service:latest
+     depends_on:
+       - config-server
+       - eureka-server
+       - zuul-server
+     env_file:
+       - ./docker_env/production/awardsmicroservice-properties.env
+     restart: on-failure
+
+  awards-www-service:
+     build:
+       context: ./AwardsMicroservice
+       dockerfile: Dockerfile_wwwservice
+     image: awards-www-service:latest
+     depends_on:
+       - config-server
+       - eureka-server
+       - zuul-server
+     expose:
+       - 8005
+     env_file:
+       - ./docker_env/production/awardsmicroservice-properties.env
+     ports:
+       - 8005:8005
+     restart: on-failure
+
+  uasa-parser-service:
+    build:
+      context: ./UserActivityStreamAnalyzer
+      dockerfile: Dockerfile_parser
+    image: uasa-parser-service:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    env_file:
+      - ./docker_env/production/useractivitystreamanalyzer-properties.env
+    restart: on-failure
+
+  uasa-results-service:
+    build:
+      context: ./UserActivityStreamAnalyzer
+      dockerfile: Dockerfile_results
+    image: uasa-results-service:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    env_file:
+      - ./docker_env/production/useractivitystreamanalyzer-properties.env
+    restart: on-failure
+
+  uasa-ruleengine-service:
+    build:
+      context: ./UserActivityStreamAnalyzer
+      dockerfile: Dockerfile_ruleengine
+    image: uasa-ruleengine-service:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    env_file:
+      - ./docker_env/production/useractivitystreamanalyzer-properties.env
+    restart: on-failure
+
+  uasa-rules-service:
+    build:
+      context: ./UserActivityStreamAnalyzer
+      dockerfile: Dockerfile_rules
+    image: uasa-rules-service:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    env_file:
+      - ./docker_env/production/useractivitystreamanalyzer-properties.env
+    restart: on-failure
+
+  uasa-webhook-service:
+    build:
+      context: ./UserActivityStreamAnalyzer
+      dockerfile: Dockerfile_webhook
+    image: uasa-webhook-service:latest
+    depends_on:
+      - config-server
+      - eureka-server
+      - zuul-server
+    expose:
+      - 8004
+    env_file:
+      - ./docker_env/production/useractivitystreamanalyzer-properties.env
+    ports:
+      - 8004:8004
+    restart: on-failure
+
+  # activity-sink-microservice:
+  #   build: ./ActivitySinkMicroservice
+  #   image: activity-sink-microservice:latest
+  #   depends_on:
+  #     - config-server
+  #     - eureka-server
+  #     - zuul-server
+  #   expose:
+  #     - 8006
+  #   env_file:
+  #    - ./docker_env/production/activitysinkmicroservice-properties.env
+  #   ports:
+  #     - 8006:8006
+  #   restart: on-failure
+  #   volumes:
+  #     - $HOME/mavenrepo/:/maven/home/
+  #   environment:
+  #     MVN_LOCAL_REPO: /maven/home/
+
+#   mongodb:
+#     image: mongo:latest
+#     restart: on-failure
+#     volumes:
+#       - $HOME/Documents/MetrixDataBase/mongodb:/data/db
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: root
+#       MONGO_INITDB_ROOT_PASSWORD: example
+#     ports:
+#       - 27017:27017

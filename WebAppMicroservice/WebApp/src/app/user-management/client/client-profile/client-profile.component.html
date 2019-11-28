@@ -1,0 +1,81 @@
+<mat-toolbar>
+    <h1 class="mat-h1">Account Profile</h1>
+</mat-toolbar>
+<app-client-profileview *ngIf="display" (notify)="receiveMessage($event)"></app-client-profileview>
+<div *ngIf="!display" class="body" fxLayout.xs="column">
+
+    <!-- <div fxLayout="row" fxLayoutAlign="space-around center">
+
+      <div fxFlex="30%">
+          <button class="editData" color="primary" mat-mini-fab ><a routerLink="/client/profileview">
+              <mat-icon>edit</mat-icon>
+          </a>
+          </button>
+      </div>
+
+  </div> -->
+    <header>
+        <h3 class="mat-h3">Update your Profile details and Organisation details</h3>
+    </header>
+    <form [formGroup]="newClient">
+
+        <section class="form" fxLayout="row" fxLayoutAlign="space-evenly start" fxLayout.xs="column">
+            <section fxFlex="70" fxLayout.xs="column">
+                <mat-form-field class="formField">
+                    <input formControlName="profileName" matInput placeholder="Enter Profile Name">
+                    <mat-error *ngIf="newClient.invalid && newClient.touched">
+                        Choose a name with minimum length of 3 , maximum length of 20 which doesn't contain special characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance='outline' class="formField">
+                    <mat-label>Enter Description</mat-label>
+                    <textarea #input maxlength="250" formControlName="description" matInput placeholder="Tell us about yourself" rows=5></textarea>
+                    <mat-hint align="end">{{input.value?.length || 0}}/250</mat-hint>
+                    <mat-error *ngIf="newClient.invalid && newClient.touched">
+                        Error: description is invalid
+                    </mat-error>
+                </mat-form-field>
+                <h3 class="mat-h3">Organisation details</h3>
+                <mat-form-field class="formField">
+                    <input formControlName="organisationName" matInput placeholder="Organisation Name">
+                    <mat-error *ngIf="newClient.invalid && newClient.touched">
+                        Error: Organisation Name is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="formField" *ngIf="!editForm">
+                    <mat-label>Organisation URL</mat-label>
+                    <input formControlName="organisationURL" matInput placeholder="Organisation URL">
+                    <mat-error *ngIf="newClient.invalid && newClient.touched">
+                        Error: Organisation URL is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="formField">
+                    <mat-label>Organisation Email</mat-label>
+                    <input formControlName="orgEmail" matInput placeholder="Organisation email">
+                    <mat-error *ngIf="newClient.invalid && newClient.touched">
+                        Error: Organisation Email is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance='outline' class="formField">
+                    <mat-label>Enter Organisation Description</mat-label>
+                    <textarea #inputOrg maxlength="300" formControlName="aboutOrg" matInput placeholder="Tell us about your organisation" rows=5></textarea>
+                    <mat-hint align="end">{{inputOrg.value?.length || 0}}/300</mat-hint>
+                    <mat-error *ngIf="newClient.invalid && newClient.touched">
+                        Error: Organisation description is invalid
+                    </mat-error>
+                </mat-form-field>
+            </section>
+            <section class="imgSection" fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
+                <mat-form-field class="formFields">
+                    <input (change)="onURLinserted()" [(ngModel)]="imgURL" formControlName="avatarURL" matInput name="imgURL" placeholder="Avatar URL" type="URL">
+                </mat-form-field>
+                <img [src]="imgURL" height="200" *ngIf="imgURL">
+            </section>
+
+        </section>
+
+        <button (click)="submitEvent('DATA ADDED SUCCESSFULLY', '')" [disabled]="!newClient.valid" class="submitButton" color="primary" mat-raised-button>SAVE
+    </button>
+        <button (click)="oncancel()" class="cancel" mat-raised-button>CANCEL</button>
+    </form>
+</div>

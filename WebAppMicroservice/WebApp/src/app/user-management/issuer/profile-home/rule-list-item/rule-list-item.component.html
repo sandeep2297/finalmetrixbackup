@@ -1,0 +1,16 @@
+<a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
+    <mat-icon class="routeIcon" *ngIf="item.ruleId!='RuleAdd' && item.ruleId!='RuleHeader'">chevron_right</mat-icon>
+    <mat-icon class="routeIcon" *ngIf="item.ruleId=='RuleHeader'">edit</mat-icon>
+    <mat-icon class="routeIcon" *ngIf="item.ruleId=='RuleAdd'">note_add</mat-icon>
+    <h4> {{item.ruleName}} </h4>
+    <span fxFlex *ngIf="item.children && item.children.length">
+    <span fxFlex></span>
+    <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+        expand_more
+    </mat-icon>
+    </span>
+</a>
+<div *ngIf="expanded">
+    <app-rule-list-item *ngFor="let child of item.children" [selectedPipelineId]="selectedPipelineId" [item]="child" [depth]="depth+1">
+    </app-rule-list-item>
+</div>

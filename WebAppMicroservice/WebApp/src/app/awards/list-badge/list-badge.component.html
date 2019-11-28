@@ -1,0 +1,49 @@
+<mat-toolbar class="child-header">
+    <h2>Badge Templates</h2>
+</mat-toolbar>
+<section fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-form-field class="searchField">
+        <mat-label>
+            <mat-icon>search</mat-icon>
+            Search Badge
+        </mat-label>
+        <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="searchTerm" placeholder="Search">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="createBadge()"><mat-icon>add</mat-icon>&nbsp;&nbsp;&nbsp;Create Badge</button>
+</section>
+
+<section fxLayout="row wrap" fxLayoutGap="5%" class="cards-flex" *ngIf="badgeLen===true">
+    <div *ngFor="let badge of filteredBadges">
+        <mat-card class="mat-elevation-z8 card-size">
+
+            <img mat-card-image [src]="badge.image" class="image">
+            <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
+
+                <div class="badges-details">
+                    {{badge.name}}
+                </div>
+                <div>
+                    <button mat-button [matMenuTriggerFor]="menu" class="menuButton"><mat-icon>more_vert</mat-icon></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="createViewBadge(badge)">
+                            <mat-icon>remove_red_eye</mat-icon>
+                            <span>View</span>
+                        </button>
+                        <button mat-menu-item (click)="editBadge(badge.badgeId)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit</span>
+                          </button>
+                    </mat-menu>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</section>
+<section *ngIf="badgeLen===false" class="setup-detail" fxLayout="row" fxLayoutAlign="space-evenly center">
+    <h1>Getting Started with Badges</h1>
+    <ol>
+        <li> Create Badges</li>
+        <li> See the List of Awardees</li>
+        <li> Award Users</li>
+    </ol>
+</section>

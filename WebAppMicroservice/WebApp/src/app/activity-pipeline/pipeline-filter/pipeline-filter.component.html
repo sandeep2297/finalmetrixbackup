@@ -1,0 +1,34 @@
+<section>
+    <mat-toolbar>
+        <span>Acitvity Pipeline Monitoring</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <h3 class="mat-h3 space-between-content">This section lists all the issuer profiles and provides view of the pipeline
+    </h3>
+    <div>
+        <form #formDirective="ngForm" (ngSubmit)="submitData(formDirective)" [formGroup]="pipelinefilter">
+            <mat-form-field class="space-between-content">
+                <mat-label>IssuerProfile List</mat-label>
+                <mat-select (selectionChange)="selectIssuerItemListIndex($event)" formControlName="issuerListControl" required>
+                    <mat-option *ngFor="let Issuer of issuerList" [value]="Issuer.issuerProfileId">
+                        {{Issuer.issuerName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="pipelinefilter.invalid">Please choose an issuer</mat-error>
+            </mat-form-field>
+            <mat-form-field class="space-between-content">
+                <mat-label>Pipeline List</mat-label>
+                <mat-select [disabled]="this.disableSelect" formControlName="pipelineListControl" required>
+                    <mat-option *ngFor="let Pipeline of pipelineList" [value]="Pipeline.activityPipelineId">
+                        {{Pipeline.pipelineName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="pipelinefilter.invalid">Please choose anyone pipeline</mat-error>
+            </mat-form-field>
+            <button [disabled]="!pipelinefilter.valid" class="button" color="primary" mat-raised-button>View Result
+      </button>
+        </form>
+    </div>
+</section>
+<app-pipeline-list #child [columnsToDisplay]=headerDisplay [dataSourceEmpty]=dataSourceEmpty [dataSource]=dataSourceResult [expandedElement]=expandedElementItem></app-pipeline-list>
+<!-- </div> -->

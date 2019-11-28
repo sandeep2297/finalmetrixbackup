@@ -1,0 +1,67 @@
+
+.body{
+    margin-left:8%;
+    margin-right:8%;
+    margin-bottom:6%;
+}
+.editData{
+    margin-left: 169%;
+    margin-top: 9px;;
+    margin-bottom: 10%;
+}
+mat-form-field{
+    width:50%;
+}
+.cancel,.submitButton {
+   width:13%;
+   float:right;
+   margin-top:2%;
+}
+.mat-form-field-appearance-legacy, .mat-form-field-wrapper {
+    padding-bottom: 1.25em;
+    width: 300px;
+}
+.orgdesc{
+    margin-top:1%;
+}
+.collaborators{
+    width: 172%;
+    margin-left: 51%;
+    height: 133px;
+}
+.cancel{
+    margin-right:19px;
+    background-color: lightgrey;
+}
+img {
+    border-radius: 50%;
+    max-width: 200px;
+    max-height: 200px;
+    border:2px solid lightgrey;
+}
+.organisationdetails{
+    margin-top:4%;
+}
+.mat-card-actions {
+    margin-right: -8px;
+    padding: 8px 0;
+    margin-top: -3%;
+    width: 13%;
+    float: right;
+    margin-left: 43%;
+}
+.formField{
+    width:80%;
+}
+.noTopMargin{
+    margin-block-start: 0; 
+}
+header p{
+    font-size: 0.9em;
+}
+header h2{
+    margin-block-end: 0.5em;
+}
+.imgSection .mat-form-field{
+    width: 100%;
+}

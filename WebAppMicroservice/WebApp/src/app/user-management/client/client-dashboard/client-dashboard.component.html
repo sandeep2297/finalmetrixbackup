@@ -1,0 +1,159 @@
+<mat-toolbar>
+    <h1 class="mat-h1">Dashboard</h1>
+</mat-toolbar>
+<div *ngIf="isActive">
+    <!-- <mat-spinner class="spinner"></mat-spinner> -->
+</div>
+<div *ngIf="!isActive">
+    <div *ngIf="!accountProfile">
+        <h1 class="main-heading">Guidelines</h1>
+        <!----Container flex-->
+        <div class="flexcontainer" fxLayout="column" fxLayout.xs="column" fxLayoutGap="5%">
+            <!---Account Profile-->
+            <a routerLink='/user/profile' class="fill-div">
+                <div class="accountprofile" fxLayout="row" fxLayout.xs="column" fxLayoutGap="5%" fxLayoutAlign="space-between">
+                    <div>
+                        <img src="../../../../assets/images/account-profile.png">
+                    </div>
+                    <div fxFlex>
+                        <h2 class="headings">Create your Account Profile</h2>
+                        <p class="text">Fill in your organization details and get started with Metrix.</p>
+                    </div>
+                </div>
+            </a>
+            <!------->
+            <!---Issuer Profile-->
+            <a routerLink='/issuer' class="fill-div">
+                <div class="issuer" fxLayout="row" fxLayout.xs="column" fxLayoutGap="5%" fxLayoutAlign="space-between">
+                    <div>
+                        <img src="../../../../assets/images/issuerprofile.png">
+                    </div>
+                    <div fxFlex>
+                        <h2 class="headings">Make your Issuer Profile</h2>
+                        <p class="text">Create your issuer profile and start monitoring your application.</p>
+                    </div>
+                </div>
+            </a>
+            <!------->
+            <!---Pipeline Setup-->
+            <a routerLink='/issuer' class="fill-div">
+                <div class="pipeline" fxLayout="row" fxLayout.xs="column" fxLayoutGap="5%" fxLayoutAlign="space-between">
+                    <div>
+                        <img src="../../../../assets/images/pipeline.png">
+                    </div>
+                    <div fxFlex>
+                        <h2 class="headings">Setup the Pipeline </h2>
+                        <p class="text">Here you can connect and setup your application with us.</p>
+                    </div>
+                </div>
+            </a>
+            <!------->
+            <!---Create Rules-->
+            <a routerLink='/issuer' class="fill-div">
+                <div class="rules" fxLayout="row" fxLayout.xs="column" fxLayoutGap="5%" fxLayoutAlign="space-between">
+                    <div>
+                        <img src="../../../../assets/images/rules.png">
+                    </div>
+                    <div fxFlex>
+                        <h2 class="headings">Create your Rules</h2>
+                        <p class="text">To evaluate user performance, set conditions to generate awards.
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <!------->
+            <!---Issue Badges-->
+            <a routerLink='/awards' class="fill-div">
+                <div class="badges" fxLayout="row" fxLayout.xs="column" fxLayoutGap="5%" fxLayoutAlign="space-between">
+                    <div>
+                        <img src="../../../../assets/images/badge.png">
+                    </div>
+                    <div fxFlex>
+                        <h2 class="headings">Create and Issue your Badges</h2>
+                        <p class="text">Decide on your badges and start awarding users.</p>
+                    </div>
+                </div>
+            </a>
+            <!------->
+        </div>
+        <!------->
+    </div>
+
+  <div *ngIf="accountProfile">
+    <div class="cardcontainer" fxLayout="column wrap" fxLayoutAlign="space-between center">
+      <!-- <div fxFlex="20"> -->
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="25px">
+        <!-- </div> -->
+        <!-- <div fxFlex="20"> -->
+        <mat-card class="statcards">
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1%">
+            <mat-icon class="issuericon">supervisor_account</mat-icon>
+            <mat-card-header>
+              <mat-card-title>{{issuercount}}</mat-card-title>
+              <mat-card-subtitle>Issuers</mat-card-subtitle>
+            </mat-card-header>
+          </div>
+        </mat-card>
+
+        <mat-card class="statcards">
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1%">
+            <mat-icon class="tuneicon">tune</mat-icon>
+            <mat-card-header>
+              <mat-card-title>{{pipelinedatacount}}</mat-card-title>
+              <mat-card-subtitle>Pipelines</mat-card-subtitle>
+            </mat-card-header>
+          </div>
+        </mat-card>
+      <!-- </div> -->
+      <!-- <div fxFlex="20"> -->
+        <mat-card class="statcards">
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1%">
+            <mat-icon class="dataicon">trending_up</mat-icon>
+            <mat-card-header>
+              <mat-card-title>{{datacount}}</mat-card-title>
+              <mat-card-subtitle>Data Processed</mat-card-subtitle>
+            </mat-card-header>
+          </div>
+        </mat-card>
+        <!-- </div> -->
+        <!-- <div fxFlex="20"> -->
+        <mat-card class="statcards">
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1%">
+            <mat-icon class="badgeicon">emoji_events</mat-icon>
+            <mat-card-header>
+              <mat-card-title>{{badgecount}}</mat-card-title>
+              <mat-card-subtitle>Awarded Badges</mat-card-subtitle>
+            </mat-card-header>
+          </div>
+        </mat-card>
+      </div>
+      <!-- </div> -->
+    </div>
+
+        <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="space-between center">
+      <mat-form-field appearance="outline" class="datepicker">
+        <input #datepicker matInput [matDatepicker]="picker" placeholder="Pick a date">
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button class="graphButton" mat-button mat-raised-button color="primary"
+        (click)="submitGraph(datepicker.value)">Display Graph</button>
+    </div> -->
+
+        <div class="graph" align="center">
+            <mat-card class="example-card">
+                <mat-card-content>
+                    <h1 class="mat-h1" style="text-align:center;">Data Processed for each Issuers</h1>
+                    <div style="display: block; max-width: 1000px;">
+                        <canvas baseChart [colors]="chartColors" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+                    </div>
+                    <button mat-button mat-raised-button color="primary" (click)="randomize()">Change Graphs</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<section class="badgeDetailsView">
+    <section fxLayoutAlign="end">
+
+        <mat-icon class="backToPage" (click)="onClose()" color="primary">clear</mat-icon>
+    </section>
+    <section>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10%">
+
+            <section>
+                <img class="mat-elevation-z8" [src]="badge.image" alt="Image Not Found" height="300px">
+            </section>
+            <section fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <div class="badge-name">
+                    <h2>{{badge.name}}</h2>
+                </div>
+                <div class="badge-name">{{badge.description}}</div>
+                <section fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                    <section *ngFor="let tag of badge.tags">
+                        <mat-chip-list>
+                            <mat-chip color="accent" selected>{{tag}}</mat-chip>
+                        </mat-chip-list>
+                    </section>
+                </section>
+            </section>
+        </div>
+        <section class="criteria-section">
+            <h3>Criteria</h3>
+            <p>{{badge.criteria}}</p>
+        </section>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h3>Aligned Institutions</h3>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <section class="alignment-section" *ngIf="!displayAlignment">
+                    <h3>No Alignment Attached For This Badge</h3>
+                </section>
+                <section class="alignment-section" *ngIf="displayAlignment">
+
+                    <mat-list>
+                        <mat-list-item *ngFor="let alignment of badge.alignment">
+                            <mat-icon matListIcon>book</mat-icon>
+                            <h3 class="mat-h3" mat-line>{{alignment.targetName}}</h3>
+                            <h4 class="mat-h4" mat-line>{{alignment.targetDescription}}</h4>
+                        </mat-list-item>
+                    </mat-list>
+                </section>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </section>

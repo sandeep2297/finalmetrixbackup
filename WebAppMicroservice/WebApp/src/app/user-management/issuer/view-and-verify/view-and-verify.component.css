@@ -1,0 +1,50 @@
+.imageSize {
+    height: 155px;
+    width: 155px;
+}
+
+.recipient-details {
+    margin-block-start: 0;
+    color: #7a7a7a;
+    font-size: small;
+    letter-spacing: 1px;
+}
+
+.recipient-name,
+.recipient-email {
+    height: 2px;
+    color: #3d3d29;
+}
+
+.badge-name {
+    text-transform: capitalize;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.verify-button {
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 85%;
+}
+
+.narrative {
+    height: 100px;
+    min-width: 350px;
+}
+
+.evidence-section {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.backToPage {
+    cursor: pointer;
+}
+
+.valid {
+    padding: 2%;
+    background-color: #87fdad;
+    border-radius: 5%;
+}

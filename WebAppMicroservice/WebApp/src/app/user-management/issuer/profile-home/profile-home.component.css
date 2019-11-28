@@ -1,0 +1,57 @@
+.flex {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.sidenav {
+    width: 230px;
+    height: 100%;
+    background-color: #f7f7f7;
+}
+
+.search {
+    margin-top: 10px;
+}
+
+.searchMenu {
+    padding-left: 2%;
+    width: 95%;
+}
+
+.sidenav mat-icon {
+    margin: -8px 20px 0 12px;
+}
+
+form {
+    width: 100%;
+}
+
+.flexcontainer {
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.drawerIcon {
+    color: grey;
+}
+
+.mat-list-base {
+    padding-top: 0px;
+    padding-top: 0;
+}
+
+.buttons {
+    margin: 2%;
+}
+
+h4 {
+    font-weight: normal;
+}

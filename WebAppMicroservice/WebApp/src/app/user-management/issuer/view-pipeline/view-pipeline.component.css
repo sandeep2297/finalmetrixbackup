@@ -1,0 +1,78 @@
+.content {
+    margin-left: 10%;
+    margin-right: 40%;
+    margin-top: 1%;
+}
+
+.chip {
+    width: 210px;
+    height: 35px;
+}
+
+.transformerText {
+    text-align: center;
+    padding-top: 16px;
+}
+
+.tooltip {
+    cursor: pointer;
+}
+
+.head {
+    margin-top: 10px;
+}
+
+::ng-deep .iconClass {
+    height: 15px !important;
+    /* width:8px !important; */
+    font-size: 15px !important;
+}
+
+input {
+    border-radius: 2px;
+    padding: 8px;
+}
+
+.icon {
+    background-color: rgb(194, 191, 191);
+}
+
+.endpoint {
+    width: 478px;
+    height: 50px;
+    border: 0.3px solid lightgray;
+    background-color: #fefefe;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+
+.inputText {
+    width: 400px;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    color: white;
+    background-color: grey;
+    margin-bottom: 3%;
+}
+
+.mat-list-base .mat-list-item.mat-list-item-with-avatar,
+.mat-list-base .mat-list-option.mat-list-item-with-avatar {
+    height: 20px;
+}
+
+.mat-list-base .mat-list-item.mat-list-item-with-avatar .mat-list-item-content .mat-list-text,
+.mat-list-base .mat-list-item.mat-list-option .mat-list-item-content .mat-list-text,
+.mat-list-base .mat-list-option.mat-list-item-with-avatar .mat-list-item-content .mat-list-text,
+.mat-list-base .mat-list-option.mat-list-option .mat-list-item-content .mat-list-text {
+    /* padding-right: 54px; */
+    padding-left: 0px;
+}
+
+.mat-list-base .mat-list-item.mat-list-item-with-avatar .mat-list-item-content .mat-list-text,
+.mat-list-base .mat-list-item.mat-list-option .mat-list-item-content .mat-list-text,
+.mat-list-base .mat-list-option.mat-list-item-with-avatar .mat-list-item-content .mat-list-text,
+.mat-list-base .mat-list-option.mat-list-option .mat-list-item-content .mat-list-text {
+    padding-right: 0;
+    padding-left: 0;
+}

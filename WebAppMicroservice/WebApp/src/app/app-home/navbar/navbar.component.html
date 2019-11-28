@@ -1,0 +1,78 @@
+<div *ngIf="router.url=== '/'">
+  <mat-toolbar color="primary" class="toolbar">
+    <section class="header">
+      <section class="menubar">
+        <p class="mat-h2">METRIX</p>
+        <button mat-flat-button color="primary" (click)="openDialog()">
+          <div class="mat-h2">LOGIN</div>
+        </button>
+      </section>
+    </section>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="router.url != '/'" class="flexForNavbar">
+  <mat-toolbar color="primary" class="toolbar">
+    <section class="header" fxLayout="row" fxLayoutAlign="start center">
+      <section *ngIf="displaymetrix" fxLayout="row" fxLayoutAlign="start center">
+        <button type="button" mat-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div>
+          <a routerLink="/clientdashboard">
+            <h2 class="mat-h2">METRIX</h2>
+          </a>
+        </div>
+      </section>
+      <div *ngIf="!displaymetrix">
+          <h2 class="mat-h2">METRIX</h2>
+      </div>
+      <section fxFlex>
+        <button mat-icon-button [matMenuTriggerFor]="menu"
+          [ngStyle]="{'background-image': userProfileAvatarUrl , 'background-size': 'cover', 'margin-top': '6px', 'margin-right': '16px' }">
+          <div mat-card-avatar></div>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item class="logoutButton">{{currentusername}}</button>
+          <button mat-menu-item (click)="logout()" routerLinkActive="active" class="logoutButton">
+            <mat-icon>power_settings_new</mat-icon>Logout
+          </button>
+        </mat-menu>
+
+      </section>
+
+    </section>
+
+  </mat-toolbar>
+
+  <mat-drawer-container class="container">
+
+    <mat-drawer #drawer class="sidenav" mode="over" hasBackdrop="false">
+      <mat-nav-list>
+        <a mat-list-item routerLink='/user/profile' routerLinkActive="active" (click)="drawer.toggle()"
+          class="navbarItem">
+          <mat-icon class="sidenavIcon">edit</mat-icon> Account Profile
+        </a>
+        <mat-divider class="divider"></mat-divider>
+        <a mat-list-item routerLink='/issuer' routerLinkActive="active" (click)="drawer.toggle()" class="navbarItem">
+          <mat-icon class="sidenavIcon">supervisor_account</mat-icon>Issuers
+        </a>
+        <mat-divider class="divider"></mat-divider>
+
+        <a mat-list-item routerLink='awards/badge' routerLinkActive="active" (click)="drawer.toggle() "
+          class="navbarItem">
+          <mat-icon class="sidenavIcon">stars</mat-icon> Awards Management
+        </a>
+        <mat-divider class="divider"></mat-divider>
+        <a mat-list-item routerLink='pipelinemonitor/details' routerLinkActive="active" (click)="drawer.toggle()"
+          class="navbarItem">
+          <mat-icon class="sidenavIcon">view_stream</mat-icon> Pipeline Monitor
+        </a>
+        <mat-divider class="divider"></mat-divider>
+      </mat-nav-list>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+  </mat-drawer-container>
+
+</div>

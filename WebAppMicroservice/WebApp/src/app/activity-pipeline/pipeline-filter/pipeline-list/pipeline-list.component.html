@@ -1,0 +1,61 @@
+<section>
+    <div *ngIf="dataSourceEmpty==true">
+        <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table multiTemplateDataRows>
+            <ng-container *ngFor="let column of columnsToDisplay" matColumnDef="{{column}}">
+                <th *matHeaderCellDef mat-header-cell> {{headerStringMapping(column)}}</th>
+                <div *ngIf="column ==='result'">
+                    <td *matCellDef="let element" mat-cell>
+                        <div *ngIf="element[column] ==='PASSED'">
+                            <div class="result-status-pass"> {{element[column]}}</div>
+                        </div>
+                        <div *ngIf="element[column] ==='FAILED'">
+                            <div class="result-status-fail"> {{element[column]}}</div>
+                        </div>
+                        <div *ngIf="element[column] ==='PENDING'">
+                            <div class="result-status-pending"> {{element[column]}}</div>
+                        </div>
+                    </td>
+                </div>
+                <div *ngIf="column ==='duration'">
+                    <td *matCellDef="let element" mat-cell>
+                        <div style="float: left;padding-top:12px;min-width: 50%;">{{element[column]}}</div>
+                        <div>
+                            <mat-icon style="font-size: 38px;padding-left: 10px">arrow_drop_down</mat-icon>
+                        </div>
+                    </td>
+                </div>
+                <div *ngIf="column !=='result' && 'duration'">
+                    <td *matCellDef="let element" mat-cell> {{element[column]}}</td>
+                </div>
+            </ng-container>
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns  -->
+            <ng-container matColumnDef="expandedDetail">
+                <td *matCellDef="let element" [attr.colspan]="columnsToDisplay.length" mat-cell>
+                    <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'" class="list-element-detail">
+                        <div class="container expand-childcontainer" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                            <mat-chip-list aria-label="Fish selection">
+                                <div *ngFor="let expanddetail of element.evaluation_result; index as i">
+                                    <mat-chip *ngIf="expanddetail.expressionResult === true" class="expression_result_pass" selected>
+                                        {{element.expressions[i].lhs}} {{element.expressions[i].operator}} {{element.expressions[i].rhs}}
+                                    </mat-chip>
+                                    <mat-chip *ngIf="expanddetail.expressionResult === false" class="expression_result_fail" selected>
+                                        {{element.expressions[i].lhs}} {{element.expressions[i].operator}} {{element.expressions[i].rhs}}
+                                    </mat-chip>
+                                    <mat-chip *ngIf="((element.evaluation_result.length-1)!==i)" class="expression_andwith" style="background: #b5b3b3;">AND</mat-chip>
+                                </div>
+                            </mat-chip-list>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            <tr *matHeaderRowDef="columnsToDisplay" mat-header-row></tr>
+            <tr (click)="expandedElement = expandedElement === element ? null : element" *matRowDef="let element; columns: columnsToDisplay;" [class.list-expanded-row]="expandedElement === element" class="list-element-row" mat-row>
+            </tr>
+            <tr *matRowDef="let row; columns: ['expandedDetail']" class="list-detail-row" mat-row></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[30,50,100]" showFirstLastButtons></mat-paginator>
+    </div>
+    <div *ngIf="dataSourceEmpty==false" class="no-data-found">
+        <h3 class="mat-h3">No details found. Please choose an issuer and pipeline in selection box</h3>
+    </div>
+</section>

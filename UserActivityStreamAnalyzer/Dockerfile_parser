@@ -1,0 +1,84 @@
+# ----------------------------#
+#        JAVA BUILD           #
+# ----------------------------#
+FROM maven:3.6-jdk-11 AS build
+
+RUN mkdir /app
+
+# Install dependencies for activity streams core lib
+RUN mkdir -p /app/activitystreams-core
+
+COPY activitystreams-core/pom.xml /app/activitystreams-core/pom.xml
+
+WORKDIR /app/activitystreams-core/
+
+ENV MVN="mvn -B -s /usr/share/maven/ref/settings-docker.xml"
+RUN $MVN --version
+
+
+# Expected to download dependencies but not build
+RUN $MVN dependency:go-offline
+
+COPY activitystreams-core/src /app/activitystreams-core/src
+
+# Build and install libs
+RUN $MVN -f pom.xml clean install -DskipTests
+
+#------------------------- ACTIVITY STREAM LIB BUILD COMPLETE ---------------------#
+
+# Install dependencies of Lib
+RUN mkdir -p /app/libs
+
+COPY libs/pom.xml /app/libs/pom.xml
+
+
+WORKDIR /app/libs/
+
+ENV MVN="mvn -B -s /usr/share/maven/ref/settings-docker.xml"
+RUN $MVN --version
+
+# Expected to download dependencies but not build
+RUN $MVN dependency:go-offline
+
+COPY libs/src /app/libs/src
+
+# Build and install libs
+RUN $MVN -f pom.xml clean install -DskipTests
+
+#------------------------- LIBS BUILD COMPLETE ---------------------#
+
+WORKDIR /app
+
+# Install dependencies of module
+RUN mkdir -p /app/module
+
+# COPY parser/lib /app/module/lib
+
+RUN ls -ltr
+
+RUN ls -ltr module/
+
+COPY parser/pom.xml /app/module/
+
+WORKDIR /app/module/
+
+# Expected to download dependencies but not build
+RUN $MVN dependency:go-offline
+
+COPY parser/src /app/module/src
+
+# Build now
+RUN $MVN -f pom.xml clean package -DskipTests
+
+# -------------------------------#
+#        JAVA Service            #
+# -------------------------------#
+
+FROM openjdk:11
+
+COPY --from=build /usr/share/maven/ref/repository/com/metrix  /root/.m2/repository/com/metrix
+
+# Copy the built service jars and resources
+COPY --from=build /app/module/target/ParserService.jar ParserService.jar
+
+ENTRYPOINT ["java","-jar","ParserService.jar"]

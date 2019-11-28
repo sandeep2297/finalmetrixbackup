@@ -1,0 +1,49 @@
+<ng-container>
+    <section class="content">
+        <h1 class="mat-h1" matheader>{{name}}</h1>
+        <h4 class="mat-h4"> By: {{clientName}}, On {{created}}</h4>
+        <mat-divider></mat-divider>
+        <h3 matTooltip="Description of the pipeline added" class="mat-h3 tooltip">{{pDesc}}</h3>
+        <section class="transformerValue" *ngIf="viewPipeline">
+            <p class="mat-body">*This transformer is used to convert data from popular datasources.</p>
+            <mat-chip-list>
+                <mat-chip class="chip" selected>
+                    <mat-icon>transform</mat-icon>
+                    <h3 class="mat-h3 transformerText"> {{transformerValue}}
+                    </h3>
+                </mat-chip>
+            </mat-chip-list>
+        </section>
+        <!-- <section class="transformerValue" *ngIf="viewEmpty">
+             <h3 class="mat-h3"> Input data is in Activity Stream 2.0 format.</h3> 
+        </section> -->
+
+        <mat-divider></mat-divider>
+        <section class="endPoint">
+
+            <p class="mat-h3 head">Webhook for notifying awards: </p>
+            <input class="inputText" type="text" value="{{clientEndPoint}}" readonly #endpoint>
+            <button mat-raised-button class="icon" (click)="copyInputMessage(endpoint)" value="click to copy"><mat-icon class="iconClass">file_copy</mat-icon></button>
+        </section>
+        <mat-list>
+            <section *ngIf="viewHeader">
+                <p class="mat-h3 head">Headers:</p>
+                <mat-list-item *ngFor="let pipeline of dataSource">
+
+                    <mat-icon class="headerIcon" matListIcon>arrow_right</mat-icon>
+                    <!-- <section class="headValue"> -->
+                    <p matLine>
+                        <span class="mat-h3"> {{pipeline.headerField}}
+                        </span>
+                        <span class="mat-h3"> &nbsp;&nbsp;&nbsp;     {{pipeline.headerValue}}
+                        </span>
+                    </p>
+                    <!-- </section> -->
+                </mat-list-item>
+            </section>
+        </mat-list>
+
+    </section>
+
+
+</ng-container>

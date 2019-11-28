@@ -1,0 +1,74 @@
+.mat-card-image:first-child {
+    height: 150px;
+    z-index: 1;
+}
+
+.issuer-card {
+    margin-top: 4%;
+    height: 250px;
+    max-width: 200px;
+    min-width: 200px;
+    background-color: #fefefe;
+    cursor: pointer;
+    margin-bottom: 3%;
+}
+
+.addButton {
+    margin-left: 80%;
+}
+
+.card-headings {
+    margin-left: 6%;
+    align-items: center;
+}
+
+.cards-flex {
+    margin-left: 6%;
+    margin-top: 2%;
+}
+
+.search {
+    margin-top: 10px;
+    width: 70%;
+}
+
+.searchMenu {
+    margin-left: 3%;
+    padding-left: 2%;
+    width: 100%;
+}
+
+.flex {
+    width: 100%;
+}
+
+.homeContent {
+    margin: 5%;
+    margin-top: 2%;
+    height: auto;
+    border-radius: 2%;
+    align-items: center;
+}
+
+.fill-div {
+    text-decoration: none;
+    color: black;
+}
+
+.pipeline-div {
+    margin-left: 20%;
+}
+
+.headings {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.text {
+    font-family: 'Open Sans', sans-serif;
+    color: grey;
+}
+
+.flexcontainer {
+    margin-top: 2%;
+    margin-left: 5%;
+}

@@ -1,0 +1,78 @@
+<div class="forms">
+    <form #formDirective="ngForm" (ngSubmit)="submitData(formDirective)" [formGroup]="pipeline">
+        <section fxLayout="column" fxLayoutAlign="space-evenly left">
+
+            <mat-form-field class="field">
+                <input formControlName="pipelineName" matInput placeholder="Pipeline Name *" class="mat-body">
+                <mat-error *ngIf="pipeline.get('pipelineName').errors?.required && pipeline.get('pipelineName').touched" class="mat-small">
+                    Please enter pipeline name
+                </mat-error>
+                <mat-error *ngIf="pipeline.get('pipelineName').hasError('pattern')" class="mat-small">Please enter alphabates only
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="field">
+                <textarea formControlName="pipelineDescription" matInput placeholder="Pipeline Description *" rows="2" class="mat-body">
+                </textarea>
+                <mat-error *ngIf="pipeline.get('pipelineDescription').errors?.required && pipeline.get('pipelineDescription').touched" class="mat-small">
+                    Please enter description
+                </mat-error>
+            </mat-form-field>
+            <!-- <mat-form-field class="field"> -->
+            <mat-label class="mat-h3 transfLabel">Do you need a transformer?</mat-label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" formControlName="isTransformer" class="example-radio-group" [(ngModel)]="needed">
+                <mat-radio-button class="example-radio-button" *ngFor="let radioValue of radioValues" [value]="radioValue">
+                    {{radioValue}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <!-- </mat-form-field> -->
+
+            <div class="transform" *ngIf="needed=='Yes'">
+                <mat-form-field class="select-field">
+
+                    <mat-label class="mat-body">Transformer</mat-label>
+
+                    <mat-select class="dropdownList" formControlName="transformer">
+                        <mat-option *ngFor="let transformer of transformers" (click)="onSelection(transformer.viewValue)" [value]="transformer.viewValue" class="mat-body">
+                            {{transformer.viewValue}}
+                        </mat-option>
+                    </mat-select>
+
+
+                </mat-form-field>
+            </div>
+
+
+
+            <p class="mat-h3">Webhook for notifying awards</p>
+            <mat-form-field appearance="outline" class="field">
+                <input formControlName="clientEndpointUrl" matInput placeholder="Client End Point URL" class="mat-body">
+                <mat-error *ngIf="pipeline.get('clientEndpointUrl').errors?.required && pipeline.get('clientEndpointUrl').touched" class="mat-small">
+                    Please enter client end point Url
+                </mat-error>
+            </mat-form-field>
+
+            <p class="mat-h3">Please add any header fields to include</p>
+            <section formArrayName="headers" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="15px">
+                <section *ngFor="let group of headersArray.controls; let i = index;" [formGroupName]="i" class="header-container">
+                    <!-- <mat-icon class="icon">chevron_right</mat-icon> -->
+                    <mat-form-field appearance="outline" class="fields">
+                        <input matInput formControlName="headerField" placeholder="Header Field" class="mat-body">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="fields">
+                        <input matInput formControlName="headerValue" placeholder="Header Value" class="mat-body">
+                    </mat-form-field>
+                    <button (click)="addHeader(i)" color="accent" mat-raised-button type="button">ADD</button>
+                    <button class="headerButton" (click)="removeHeader(i)" *ngIf="hideFirstField(i)" mat-raised-button type="button">
+                    REMOVE
+					</button>
+                </section>
+            </section>
+
+        </section>
+
+        <button [disabled]="!pipeline.valid" class="button" color="primary" mat-raised-button>SAVE</button>
+    </form>
+
+
+    <!-- <p *ngIf="show">/stream/api/v1/webhook/issuerid/{{issuerid}}/pipelineid/{{pipelineId}}</p> -->
+</div>

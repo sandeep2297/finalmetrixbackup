@@ -1,0 +1,68 @@
+<h3 class="mat-h3">UPDATE YOUR DETAILS</h3>
+
+<form [formGroup]="newClient">
+
+  <section class="form" fxLayout="row" fxLayoutAlign="space-evenly start" fxLayout.xs="column" fxLayoutGap="15px">
+    <section fxFlex="70" fxLayout.xs="column" fxLayout="column">
+      <!-- <section class="imgSection" fxFlex="30" fxLayout="column" fxLayoutAlign="center center"> -->
+      <img [src]="imgURL" height="200" *ngIf="imgURL">
+      <mat-form-field class="formFields">
+        <input (change)="onURLinserted()" [(ngModel)]="imgURL" formControlName="avatarURL" matInput name="imgURL"
+          placeholder="Avatar URL" type="URL">
+      </mat-form-field>
+      <!-- </section> -->
+      <mat-form-field class="formField">
+        <input class="profileName" formControlName="profileName" matInput placeholder="Enter Profile Name" readonly>
+        <mat-error *ngIf="newClient.invalid && newClient.touched">
+          Choose a name with minimum length of 3 , maximum length of 20 which doesn't contain special characters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class="formField">
+        <mat-label>Enter Description</mat-label>
+        <textarea #input maxlength="250" formControlName="description" matInput placeholder="Tell us about yourself"
+          rows=5></textarea>
+        <mat-hint align="end">{{input.value?.length || 0}}/250</mat-hint>
+        <mat-error *ngIf="newClient.invalid && newClient.touched">
+          Error: description is invalid
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section fxFlex="70" fxLayout.xs="column" fxLayout="column">
+      <h3 class="mat-h3">Organisation details</h3>
+      <mat-form-field class="formField">
+        <input class="orgName" formControlName="organisationName" matInput placeholder="Organisation Name" readonly>
+        <mat-error *ngIf="newClient.invalid && newClient.touched">
+          Error: Organisation Name is invalid
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="formField">
+        <mat-label>Organisation URL</mat-label>
+        <input class="orgURL" formControlName="organisationURL" matInput placeholder="Organisation URL" readonly>
+        <mat-error *ngIf="newClient.invalid && newClient.touched">
+          Error: Organisation URL is invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formField">
+        <mat-label>Organisation Email</mat-label>
+        <input formControlName="orgEmail" matInput placeholder="Organisation email">
+        <mat-error *ngIf="newClient.invalid && newClient.touched">
+          Error: Organisation Email is invalid
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class="formField">
+        <mat-label>Enter Organisation Description</mat-label>
+        <textarea #inputOrg maxlength="300" formControlName="aboutOrg" matInput
+          placeholder="Tell us about your organisation" rows=5></textarea>
+        <mat-hint align="end">{{inputOrg.value?.length || 0}}/300</mat-hint>
+        <mat-error *ngIf="newClient.invalid && newClient.touched">
+          Error: Organisation description is invalid
+        </mat-error>
+      </mat-form-field>
+    </section>
+  </section>
+  <button (click)="updateData('DATA UPDATED SUCCESSFULLY', '')" [disabled]="!newClient.valid" class="submitButton"
+    color="primary" mat-raised-button>UPDATE
+  </button>
+  <button (click)="oncancel()" class="cancel" mat-raised-button>CANCEL</button>
+</form>

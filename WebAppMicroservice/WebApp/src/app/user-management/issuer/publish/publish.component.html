@@ -1,0 +1,64 @@
+<section class="content">
+
+    <section class="suspend mat-elevation-z8" *ngIf="isSuspended">
+        <h3 class="mat-h3 pipeSuspended">Pipeline Suspended</h3>
+    </section>
+
+
+    <h1 class="mat-h1" matSubheader>
+        Data should be streamed to
+    </h1>
+    <!-- <section fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10%" class="headers">
+        <div class="header-field">
+        </div>
+        <div class="header-value">
+        </div>
+    </section> -->
+    <section *ngIf="showEndpoint">
+        <input class="inputText" type="text" value="{{pipelines.endpointUrl}}" readonly #endpoint>
+        <button mat-raised-button class="icon" (click)="copyInputMessage(endpoint)" value="click to copy"><mat-icon class="iconClass">file_copy</mat-icon></button>
+    </section>
+    <section *ngIf="!showEndpoint">
+        <input class="inputText" type="text" value="" #endpoint>
+        <button mat-raised-button class="icon" (click)="copyInputMessage(endpoint)" value="click to copy"><mat-icon class="iconClass">file_copy</mat-icon></button>
+    </section>
+    <button mat-raised-button color="warn" (click)="suspendPipeline()" class="publish-button" *ngIf="!showPublish">Suspend</button>
+    <button mat-raised-button color="primary" (click)="publishPipeline()" class="publish-button" *ngIf="showPublish">Publish</button>
+    <mat-divider></mat-divider>
+
+    <h1 class="mat-h1" matSubheader>Pipeline Details</h1>
+    <div fxLayout="column" fxLayoutAlign="space-between start">
+        <section class="pipeDetail">
+            <section fxLayout="row">
+                <h2 class="mat-h2">{{pipelines.pipelineName}}</h2>
+            </section>
+            <section fxLayout="row">
+                <h2 class="mat-h2">{{pipelines.pipelineDescription}}</h2>
+            </section>
+            <section fxLayout="row">
+                <h2 class="mat-h2">{{pipelines.transformer}}</h2>
+            </section>
+        </section>
+    </div>
+
+
+    <!-- <h3 class="mat-h3">
+        Rules Configured
+    </h3>
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let rule of activeRules; index as i">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{rule.ruleName}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{rule.ruleDescription}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-chip *ngFor="let expression of expressionArray[i]">{{expression.lhs}}&nbsp;{{expression.operator}}&nbsp;{{expression.rhs}}</mat-chip>
+        </mat-expansion-panel>
+    </mat-accordion> -->
+</section>
+
+<!-- <button mat-raised-button color="warn" (click)="suspendPipeline()" class="publish-button" *ngIf="!showPublish">Suspend</button>
+<button mat-raised-button color="primary" (click)="publishPipeline()" class="publish-button" *ngIf="showPublish">Publish</button> -->

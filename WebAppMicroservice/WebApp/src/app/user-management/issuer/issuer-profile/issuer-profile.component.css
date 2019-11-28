@@ -1,0 +1,69 @@
+img {
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.left p {
+    text-align: center;
+}
+
+.orgName {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.orgUrl {
+    margin-top: 1em;
+}
+
+.notOrgName {
+    margin-block-start: 0;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    /* min-width: 200px;
+    min-height: 200px; */
+}
+
+h4 {
+    text-align: center;
+}
+
+.edit-button {
+    margin-left: 90%;
+}
+
+.profile-view {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.profileObjective {
+    border-bottom: 1px solid black;
+    width: 100vh;
+}
+
+.image-div {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 5%;
+}
+
+.editIcon {
+    color: grey;
+}
+
+.profDesc {
+    margin-top: 3%;
+}
+
+
+/* .pObjective {
+    /* margin-left: 4%;
+}
+
+.pDescription {
+    /* margin-left: 4%; 
+} */

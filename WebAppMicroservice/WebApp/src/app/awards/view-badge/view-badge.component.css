@@ -1,0 +1,36 @@
+img {
+    margin-left: 50px;
+    padding-bottom: 2px;
+    width: 200px;
+    height: 200px;
+    align-content: center;
+    word-wrap: break-word;
+}
+
+.alignment-section,
+.criteria-section {
+    margin: 5%;
+}
+
+.badge-name {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.alignment-card mat-card {
+    height: auto;
+    width: 200px;
+}
+
+.end-align-button {
+    margin-left: 95%;
+    margin-bottom: 1%;
+}
+
+.backToPage {
+    cursor: pointer;
+}
+
+.edit {
+    cursor: pointer;
+}

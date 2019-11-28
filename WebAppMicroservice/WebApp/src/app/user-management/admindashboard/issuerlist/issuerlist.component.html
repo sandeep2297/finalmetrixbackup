@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <span>ISSUERS</span>
+</mat-toolbar>
+<!-- <div fxLayout="column" fxLayoutAlign="start center"> -->
+<!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="42px" class="align">
+        <h3 class="mat-h3" >Names</h3>
+        <h3 class="mat-h3" >Pipeline Counts</h3>
+       </div>
+        <mat-list-item *ngFor="let issuer of issuerDetails; let i = index" fxLayout="column" fxLayoutAlign="start center">
+
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <p mat-line style="min-width: 130px;">{{issuer.issuerName}}</p>
+                <mat-icon matBadgeColor="primary" matBadge="{{totalpipeline[i]}}">tune</mat-icon>
+       
+            </div>
+        </mat-list-item>
+ </div> -->
+<section fxLayout="row wrap" fxLayoutGap="10px" class="cards-flex">
+    <mat-card *ngFor="let issuer of issuerDetails; let i = index" class="issuer">
+        <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <p mat-line style="min-width: 130px;">{{issuer.issuerName}}</p>
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <mat-icon class="pipeline" matBadgeColor="warn" [matBadge]="totalpipeline[i]">tune</mat-icon>
+                    <p>Pipeline</p>
+                </div>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</section>
+<button class="exit" mat-raised-button color="primary" (click)=cancel()>Exit</button>

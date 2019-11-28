@@ -1,0 +1,18 @@
+<section>
+    <div class="heading">
+        <h2>Select a Revocation Reason</h2>
+    </div>
+    <section fxLayoutAlign="end">
+        <mat-icon class="backToPage" color="accent" (click)="onCancel()">cancel</mat-icon>
+    </section>
+    <section>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="selectedRevokedReason">
+            <mat-radio-button class="example-radio-button" *ngFor="let reason of revokedReasons" [value]="reason">
+                {{reason}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </section>
+    <section fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="end">
+        <button mat-raised-button color="primary" (click)="revoke()">Revoke</button>
+    </section>
+</section>

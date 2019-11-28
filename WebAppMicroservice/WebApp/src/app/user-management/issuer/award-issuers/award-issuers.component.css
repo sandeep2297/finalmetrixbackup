@@ -1,0 +1,61 @@
+.card-size {
+    margin-top: 2%;
+    height: 190px;
+    max-width: 190px;
+    min-width: 190px;
+    cursor: pointer;
+    margin-bottom: 2%;
+    background-color: #fefefe;
+}
+
+.card-headings {
+    margin-left: 4%;
+}
+
+.card-headings h4 {
+    margin-left: 3%;
+}
+
+.badge-card {
+    margin-top: 2%;
+    height: 170px;
+    max-width: 170px;
+    min-width: 170px;
+    cursor: pointer;
+    margin-bottom: 2%;
+    background-color: #fefefe;
+}
+
+.card-headings {
+    margin-left: 4%;
+}
+
+.card-headings h4 {
+    margin-left: 3%;
+}
+
+.cards-flex {
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+mat-card {
+    text-align: center;
+}
+
+.mat-card-image:first-child {
+    /* margin-left: 20%; */
+    margin-top: 5%;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.badges-details {
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-bottom: 2%;
+    float: left;
+    margin-left: 2%;
+}

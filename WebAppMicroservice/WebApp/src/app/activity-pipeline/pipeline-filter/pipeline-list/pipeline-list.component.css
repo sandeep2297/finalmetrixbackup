@@ -1,0 +1,124 @@
+table {
+  margin: auto;
+  width: 98%;
+}
+
+tr.mat-header-row {
+  height: 34px;
+}
+
+tr.mat-footer-row,
+.list-element-row {
+  height: 30px !important;
+}
+
+.no-data-found {
+  font-size: 1.2em;
+  color: gray;
+  margin-top: 8%;
+  text-indent: 10%;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  color: #332828;
+  background: #d8d8d8;
+}
+
+.expand-headercontainer {
+  font-weight: bold;
+  color: #332828;
+  background: #d8d8d8;
+  padding: 1%;
+}
+
+.expand-childcontainer {
+  padding: 1%;
+}
+
+td .mat-cell,
+.cdk-column-duration,
+.mat-column-duration {
+  width: 12%;
+}
+
+tr.list-detail-row {
+  height: 0;
+  background: #dfe2e499;
+}
+
+tr.list-element-row:not(.list-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+tr.list-element-row:not(.list-expanded-row):active {
+  background: #efefef;
+}
+
+.mat-cell,
+.mat-footer-cell {
+  font-size: 14px;
+}
+
+.result-status-pass,
+.result-status-fail,
+.result-status-pending,
+.item .item-2 {
+  border-radius: 6px;
+  color: #fbfbfb;
+  height: 14px;
+  font-weight: bold;
+  border: none;
+  line-height: 14px;
+  padding: 4px;
+  width: 50%;
+  text-align: center;
+}
+
+.result-status-pass {
+  background: green;
+}
+
+.result-status-fail {
+  background: red;
+}
+
+.result-status-pending {
+  background: #ffb40c;
+}
+
+.list-element-detail {
+  min-width: 25%;
+}
+
+.list-element-row td {
+  border-bottom-width: 0;
+}
+
+mat-paginator {
+  width: 98%;
+  margin: auto;
+}
+
+tr:hover {
+  cursor: pointer;
+}
+
+.expression_result_pass {
+  background: green !important;
+  font-weight: bold;
+}
+
+.expression_result_fail {
+  background: red !important;
+  font-weight: bold;
+}
+
+.expression_andwith {
+  background: #c8c8da;
+  font-weight: bold;
+}
+
+mat-chip {
+  text-transform: uppercase;
+}

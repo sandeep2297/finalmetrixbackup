@@ -1,0 +1,24 @@
+.sign-in-google {
+    width: 207px;
+    float: right;
+    margin-top: 12%;
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+
+
+.sign-in-gitlab {
+    width: 207px;
+    float: right;
+    font-weight: bold;
+}
+
+.gitlab {
+    margin-left: -13%;
+    width: 23%;
+}
+
+.clear {
+    float: right;
+    cursor: pointer;
+}

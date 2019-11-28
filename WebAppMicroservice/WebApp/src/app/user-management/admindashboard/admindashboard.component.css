@@ -1,0 +1,63 @@
+.avatar{
+    border-radius: 50%;
+    height: 44px;
+ }
+ .mat-card {
+    margin-left: 4%;
+    background: #fff;
+    color: rgba(0,0,0,.87);
+    /* max-width: 300px;
+    min-width:300px; */
+    width: 300px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    height:250px;
+ }
+ .heading{
+    margin-right:67%;
+ }
+ .badge{
+    margin-left:4%;
+ }
+ .pipeline{
+    margin-left:4%;
+ }
+ .issuer{
+    margin-left:1%;
+    color: black;
+ }
+ .paginator{
+    position: fixed;
+    bottom: 0;
+    margin-left: 60%;
+ }
+ mat-card-content{
+    background-color:#F5F5F5;
+  }
+ .mat-card-content>:first-child, .mat-card>:first-child {
+    margin-top: 11px;
+  }
+  .body{
+      margin-left:2%;
+      margin-right:6%;
+  }
+  .mat-dialog-container {
+    display: block;
+    padding: 24px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: auto;
+    outline: 0;
+    width: 78%;
+    height: 100%;
+    min-height: inherit;
+    max-height: inherit;
+ }
+ mat-card-footer{
+    width:100%;
+    position: absolute;
+    bottom:25px;
+    left:25px;
+    margin: 0 -16px -16px -16px;
+    display:block;
+ }

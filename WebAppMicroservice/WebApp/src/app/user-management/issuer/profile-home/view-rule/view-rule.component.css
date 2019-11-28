@@ -1,0 +1,56 @@
+table,
+th,
+tr,
+td {
+  border: 1 px solid black;
+  border-collapse: collapse;
+}
+
+.ruleBody {
+  margin: 5%;
+}
+
+.topIcons>* {
+  float: right;
+  margin: 1% 3% 2% 0;
+}
+
+.editIcons {
+  cursor: pointer;
+}
+
+.archive {
+  background-color: dimgrey;
+  text-align: center;
+}
+
+img {
+  max-height: 250px;
+  max-width: 250px;
+}
+
+.classname {
+  text-align: center;
+}
+
+mat-chip {
+  text-transform: uppercase;
+  width: 150px;
+  margin: 1% 0 1% 0;
+}
+
+center {
+  text-align: center;
+}
+
+mat-card-title {
+  margin-right: 0 !important;
+}
+
+.mat-h3 {
+  margin-top: 1em;
+}
+
+.material-icons {
+  font-size: 30px;
+}

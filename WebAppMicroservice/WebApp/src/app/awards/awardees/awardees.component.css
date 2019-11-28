@@ -1,0 +1,28 @@
+.awardee-img img {
+    margin: 2%;
+    height: 200px;
+    width: 200px;
+}
+
+.awardee-img,
+.badge-details,
+.tableSection {
+    margin: 5%;
+}
+
+.badge-details-name {
+    margin: 5%;
+}
+
+.issuerDropDownList {
+    margin-left: 40%;
+}
+
+table {
+    width: 100%;
+}
+
+.tableSection {
+    margin-left: 5%;
+    margin-right: 5%;
+}

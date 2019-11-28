@@ -1,0 +1,64 @@
+<mat-tab-group>
+    <mat-tab label="Badge Templates">
+        <section fxLayout="row wrap" fxLayoutGap="5%" class="cards-flex">
+            <section *ngFor="let badge of badgeArray">
+                <mat-card class="mat-elevation-z6 badge-card" (click)="confirmationAndConvert(badge)">
+                    <img mat-card-image [src]="badge.image" alt="Image Not Found" class="image">
+                    <section class="card-headings">
+                        <h4>{{badge.name}}</h4>
+                    </section>
+                </mat-card>
+            </section>
+        </section>
+    </mat-tab>
+    <mat-tab label="Issuer Badges">
+        <section fxLayout="row wrap" fxLayoutGap="5%" class="cards-flex">
+            <div *ngFor="let badgeclass of selectedBadgeArray">
+                <mat-card class="mat-elevation-z8 card-size">
+
+                    <img mat-card-image [src]="badgeclass.image" class="image">
+                    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
+                        <div class="badges-details">
+                            {{badgeclass.name}}
+                        </div>
+                        <div>
+                            <button mat-button [matMenuTriggerFor]="menu" class="menuButton"><mat-icon>more_vert</mat-icon></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="awardsManually(badgeclass)">
+                                    <mat-icon>star</mat-icon>
+                                    <span>Award Manually</span>
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </section>
+
+
+
+        <!-- <section fxLayout="row wrap" fxLayoutGap="5%" class="cards-flex">
+            <section *ngFor="let badgeclass of selectedBadgeArray">
+                <mat-card class="mat-elevation-z8 card-size">
+
+                    <img mat-card-image [src]="badge.image" class="image">
+                    <mat-card-actions>
+                        <div class="badges-details">
+                            {{badge.name}}
+                        </div>
+                        <div class="menu">
+                            <button mat-button [matMenuTriggerFor]="menu" class="menuButton"><mat-icon>more_vert</mat-icon></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="awardsManually(badgeclass)">
+                                                    <mat-icon>star</mat-icon>
+                                                    <span>Award Manually</span>
+                                          </button>
+                            </mat-menu>
+                        </div>
+                    </mat-card-actions>
+
+                </mat-card>
+            </section>
+        </section> -->
+    </mat-tab>
+</mat-tab-group>

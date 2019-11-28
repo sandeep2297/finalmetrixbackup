@@ -1,0 +1,87 @@
+/*Styling for navbar for landing page */
+
+.menubar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    color: white;
+}
+
+.toolbar {
+    padding: 0;
+}
+
+button {
+    margin-top: -8px;
+    color: white;
+    font-weight: bold;
+}
+
+/*Styling for all navbars  */
+
+.header {
+    justify-content: center;
+    background-size: 100% 100%;
+    text-align: right;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+/*Styling for all navbars except the landing page*/
+
+
+/*Mat drawer container class styling*/
+
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.sidenav {
+    width: 230px;
+    background-color: #24316f;
+    
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+
+/*Styling to remove the extra scroll bar due to nav container*/
+
+.flexForNavbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.divider {
+    background-color: white;
+}
+
+.logoutButton {
+    background-color: white;
+    color: black;
+}
+
+.avatar {
+    margin-top: 1.5%;
+    margin-right: 17px;
+    margin-top: 6px;
+}
+
+.navbarItem {
+    color: white;
+    padding-left: 2%;
+}
+
+.sidenavIcon {
+    padding-right: 6%;
+}

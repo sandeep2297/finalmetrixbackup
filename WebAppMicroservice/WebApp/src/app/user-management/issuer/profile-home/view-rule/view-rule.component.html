@@ -1,0 +1,39 @@
+<section class="topIcons">
+  <mat-icon class="editIcons" matTooltip="Edit Rule" (click)="editRule()">edit</mat-icon>
+  <mat-icon class="editIcons" matTooltip="Archive Rule" (click)="archiveRule()">archive</mat-icon>
+</section>
+
+
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <div fxFlex="50">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <div *ngIf="displayBadge">
+        <h1 class="mat-h1 classname">{{award.name}}</h1>
+        <img [src]="award.image" alt="Photo of the Badge">
+      </div>
+      <div *ngIf="displayPoints">
+        <mat-card style="margin-top :1em;min-width: 230px">
+          <div class="center" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1em">
+            <mat-card-title><i class="material-icons">stars</i></mat-card-title>
+            <mat-card-title> Points: </mat-card-title>
+            <!-- <mat-card-header> -->
+            <mat-card-title>{{point.awardValue}}</mat-card-title>
+            <!-- <mat-card-subtitle></mat-card-subtitle> -->
+            <!-- </mat-card-header> -->
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+
+  <div fxFlex="50">
+    <h2 class="mat-h2">{{rule.ruleName}}</h2>
+    <p class="mat-p">{{rule.ruleDescription}}</p>
+    <mat-divider></mat-divider>
+    <h3 class="mat-h3">Expressions</h3>
+    <div fxLayout="column" fxLayoutGap="10px" *ngFor="let data of dataSource">
+      <mat-chip>{{data.lhs}} {{data.operator}} {{data.rhs}}</mat-chip>
+    </div>
+  </div>
+</div>

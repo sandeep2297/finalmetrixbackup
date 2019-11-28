@@ -1,0 +1,14 @@
+<section fxLayout="row" fxLayoutGap="68%">
+    <h3 class="mat-h3">Select a Badge</h3>
+    <mat-icon matTooltip="close" class="cancel clear" (click)="onCancel()">clear</mat-icon>
+</section>
+<section fxLayout="row wrap" fxLayoutGap="5%" class="cards-flex">
+    <section *ngFor="let issuerAward of issuerAwards">
+        <mat-card (click)="selectedBadge(issuerAward)" class="mat-elevation-z6 badge-card">
+            <img mat-card-image [src]="issuerAward.image" alt="Image Not Found" class="image">
+            <div class="card-headings">
+                <h4>{{issuerAward.name}}</h4>
+            </div>
+        </mat-card>
+    </section>
+</section>

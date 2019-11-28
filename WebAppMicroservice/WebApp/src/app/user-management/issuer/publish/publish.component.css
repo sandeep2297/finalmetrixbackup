@@ -1,0 +1,79 @@
+.header-field {
+    width: 200px;
+    height: 50px;
+    border: 0.3px solid lightgray;
+    background-color: #fefefe;
+}
+
+.header-value {
+    width: 200px;
+    height: 50px;
+    border: 0.3px solid lightgray;
+    background-color: #fefefe;
+}
+
+.headers {
+    margin-left: 10%;
+}
+
+.endpoint {
+    width: 478px;
+    height: 50px;
+    border: 0.3px solid lightgray;
+    background-color: #fefefe;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+
+.publish-button {
+    margin: 4% 2% 4% 0;
+    width: 100%;
+}
+
+input {
+    border-radius: 2px;
+    padding: 8px;
+}
+
+.content {
+    margin: 1% 4% 5% 3%;
+}
+
+.suspend {
+    background-color: rgb(228, 31, 31);
+    color: white;
+    padding: 1%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.icon {
+    background-color: rgb(194, 191, 191);
+}
+
+::ng-deep .iconClass {
+    height: 15px !important;
+    /* width:8px !important; */
+    font-size: 15px !important;
+}
+
+.inputText {
+    width: 400px;
+}
+
+.mat-h3,
+.mat-subheading-2,
+.mat-typography h3,
+.pipeSuspended {
+    font: 400 16px/28px Roboto, "Helvetica Neue", sans-serif;
+    margin: 0 0 0;
+}
+
+
+/* .pipeSuspended {
+    margin: 0%;
+} */
+
+.pipeDetail {
+    margin-left: 2%;
+}

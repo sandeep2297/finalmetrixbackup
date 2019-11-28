@@ -1,0 +1,120 @@
+<mat-toolbar class="child-header" *ngIf="!edit">
+    <h2>Create Badge</h2>
+</mat-toolbar>
+<mat-toolbar class="child-header" *ngIf="edit">
+    <h2>Edit Badge</h2>
+</mat-toolbar>
+<form [formGroup]="badgeForm" class="form-styling">
+    <section fxLayout.xs="column">
+        <section fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutGap="5%">
+            <section class="image-form" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="2%">
+                <img class="imageSize mat-elevation-z8" src="../../../assets/images/demoBadge.jpeg" *ngIf="!imgURL" alt="Image Not Found !" height="200px">
+                <img class="imageSize mat-elevation-z8" [src]="imgURL" alt="Image Not Found" *ngIf="imgURL">
+                <mat-form-field class="formFields">
+                    <input matInput type="URL" placeholder="Badge Image Url" formControlName="image" [(ngModel)]="imgURL" (change)="onURLinserted()" />
+                    <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                        Error: Image URL is invalid
+                    </mat-error>
+                </mat-form-field>
+            </section>
+            <section class="name-description-form" fxLayout="column" fxLayoutAlign="space-between end">
+                <mat-form-field class="flex-fields">
+                    <mat-label>Badge Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Badge Name" />
+                    <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                        Hint: Choose a name with minimum length of 3 , maximum length of 20 which doesn't contain special characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="flex-fields">
+                    <mat-label>Badge Description</mat-label>
+                    <textarea rows=6 matInput formControlName="description" placeholder="Description"></textarea>
+                    <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                        Hint: Give Description with minimum length of 10!
+                        <!-- Error: description is invalid -->
+                    </mat-error>
+                </mat-form-field>
+            </section>
+        </section>
+        <section fxLayout="column" fxayoutAlign="space-between start">
+            <mat-form-field class="flex-fields-different" appearance="outline">
+                <mat-label>Badge Criteria</mat-label>
+                <textarea rows="4" matInput formControlName="criteria" placeholder="Criteria"></textarea>
+                <!-- <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                    Error: Criteria is invalid
+                </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class="flex-fields-different">
+                <mat-label>Badge Tags</mat-label>
+                <mat-chip-list #chipList aria-label="tempTags" formControlName="tags">
+                    <input placeholder="Tags" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addTag($event)" />
+                </mat-chip-list>
+                <!-- <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                    Error: No Tags Added Hint: Add atLeast One Tag.
+                </mat-error> -->
+            </mat-form-field>
+            <mat-chip-list aria-label>
+                <mat-chip color="primary" *ngFor="let tag of tempTags" [selectable]="selectable" [removable]="removable" (removed)="removeTag(tag)" selected>
+                    {{ tag }}
+                    <mat-icon matInput matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+            <section fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="start center">
+                <mat-toolbar class="flex-fields-different">
+                    <h2>Aligned Institutions</h2>
+                </mat-toolbar>
+                <button mat-mini-fab *ngIf="display" (click)="createAlignmentForm()" color="accent">+</button>
+
+            </section>
+        </section>
+        <section formArrayName="alignment" class="alignment-styling">
+            <mat-hint>An object describing which objectives or educational standards this badge aligns to, if any</mat-hint>
+            <section *ngFor="let group of alignmentArray.controls; let i = index" [formGroupName]="i">
+                <section fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%" fxLayoutAlign="start center" class="target-style">
+                    <mat-form-field class="target-name">
+                        <mat-label>Target Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="targetName" />
+                        <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                            Choose a Alignment Target name with minimum length of 3 , maximum length of 20!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="target-url">
+                        <mat-label>Target URL</mat-label>
+                        <input matInput placeholder="Url" formControlName="targetURL" />
+                    </mat-form-field>
+                </section>
+                <section fxLayout="column">
+                    <mat-form-field>
+                        <mat-label>Target Code</mat-label>
+                        <input matInput placeholder="Code" formControlName="targetCode" />
+                        <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                            Error: Please Provide Alignment Target Code !
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Target Framework</mat-label>
+                        <input matInput placeholder="Framework" formControlName="targetFramework" />
+                        <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                            Error: Please Provide Alignment Target Framework !
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Target Description</mat-label>
+                        <textarea matInput placeholder="Description" formControlName="targetDescription"></textarea>
+                        <mat-error *ngIf="badgeForm.invalid && badgeForm.touched">
+                            Error: Please Provide Alignment Target Description
+                        </mat-error>
+                    </mat-form-field>
+                </section>
+                <section fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1%">
+                    <button mat-raised-button (click)="addAlignment(i)" color="accent">Add</button>
+                    <button mat-raised-button (click)="removeAlignment(i)">Remove</button>
+                </section>
+            </section>
+        </section>
+        <section fxLayout="row" fxLayoutAlign="end center" class="form-submit-btn" fxLayoutGap="8%">
+            <button mat-raised-button (click)="onCancel()" class="end-button">CANCEL</button>
+            <button mat-raised-button (click)="submitBadge()" color="primary" [disabled]="!badgeForm.valid" class="end-button" *ngIf="!edit">SAVE</button>
+            <button mat-raised-button (click)="updateBadge()" color="primary" [disabled]="!badgeForm.valid" class="end-button" *ngIf="edit">UPDATE</button>
+        </section>
+    </section>
+</form>

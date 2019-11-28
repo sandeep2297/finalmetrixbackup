@@ -1,0 +1,59 @@
+.expression-container>* {
+    margin: 5px;
+    width: 12%;
+}
+
+.submitButton {
+    margin: 0 0 5% 70%;
+    width: 10%;
+}
+
+.ruleTitle {
+    width: 60%;
+}
+
+form {
+    margin-left: 2%;
+}
+
+.headingFont {
+    font-size: 17px;
+}
+
+.icon:not(.expression-container) {
+    width: auto;
+}
+
+.response {
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 2% 20% 2% 20%;
+}
+
+.helpIcon {
+    margin-left: 94%;
+    cursor: pointer;
+}
+
+h3 {
+    border-bottom: 1px solid black;
+    width: 60%;
+}
+
+.point {
+    padding: 0 0 0 3%;
+}
+
+.awardHeader {
+    font-weight: normal;
+    margin-top: 2%;
+}
+
+.awardIcon {
+    margin-top: 2%;
+}
+
+.add {
+    cursor: pointer;
+}

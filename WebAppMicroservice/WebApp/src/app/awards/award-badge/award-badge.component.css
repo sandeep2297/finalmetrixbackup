@@ -1,0 +1,34 @@
+.assertions {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.award-badge-img img {
+    height: 200px;
+    width: 200px;
+}
+
+.narrative-question,
+.evidence-question-how,
+.evidence-URL {
+    width: 100%;
+}
+
+.recipient-info,
+.narrative-styling,
+.evidence-styling {
+    margin: 2%;
+}
+
+.narrative-styling input {
+    width: 100%;
+}
+
+.cancel-submit-btn {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.narrative-question {
+    max-width: 100%;
+}

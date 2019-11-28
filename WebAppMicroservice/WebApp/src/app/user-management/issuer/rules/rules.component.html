@@ -1,0 +1,104 @@
+<section class="help">
+    <mat-icon class="helpIcon" matTooltip="How to add Rule?" (click)="configRule()">help</mat-icon>
+</section>
+<form #formDirective="ngForm" (ngSubmit)="submitRule(formDirective)" [formGroup]="ruleForm" fxLayout="column" fxLayoutGap="10px">
+    <section>
+        <mat-form-field class="ruleTitle">
+            <input formControlName="ruleName" matInput placeholder="Rule Name" (click)="clearResponse()" class="mat-body">
+            <mat-error *ngIf="ruleForm.get('ruleName').errors?.required && ruleForm.get('ruleName').touched" class="mat-small">
+                Rule Name cannot be empty
+            </mat-error>
+            <mat-error *ngIf="ruleForm.get('ruleName').errors?.maxlength" class="mat-small">
+                Rule Name should be less than 15 characters
+            </mat-error>
+        </mat-form-field>
+    </section>
+    <section>
+        <mat-form-field appearance="outline" class="ruleTitle">
+            <textarea formControlName="ruleDescription" matInput placeholder="Rule Description" class="mat-body"></textarea>
+            <mat-error *ngIf="ruleForm.get('ruleDescription').errors?.required && ruleForm.get('ruleDescription').touched" class="mat-small">
+                Rule Description cannot be empty
+            </mat-error>
+        </mat-form-field>
+    </section>
+    <section formArrayName="expression" fxLayout="column" fxLayoutGap="10px">
+        <section *ngFor="let group of expressionArray.controls; let i = index;" [formGroupName]="i" class="expression-container">
+            <mat-icon class="icon">chevron_right</mat-icon>
+            <mat-form-field>
+                <mat-select formControlName="type" placeholder="Type">
+                    <mat-option *ngFor="let type of types" [value]="type" class="mat-body">{{type}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select formControlName="operator" placeholder="Operator">
+                    <mat-option *ngFor="let operator of operators" [value]="operator" class="mat-body">{{operator}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="expressionValue" matInput placeholder="Value" class="mat-body">
+            </mat-form-field>
+            <button (click)="addExpression(i)" color="accent" mat-raised-button type="button" [disabled]="ruleForm.value.expression[i].type == 0 || ruleForm.value.expression[i].operator == 0 || ruleForm.value.expression[i].expressionValue == 0">AND</button>
+            <button (click)="removeExpression(i)" *ngIf="hideFirstField(i)" mat-raised-button type="button">
+        REMOVE
+      </button>
+        </section>
+    </section>
+    <h3 class="mat-h3">Please Select your awards</h3>
+    <section fxLayout="row" class="point" fxLayoutGap="4%">
+        <h1 class="awardHeader mat-h3">Point</h1>
+        <mat-icon class="awardIcon">chevron_right</mat-icon>
+        <mat-form-field>
+            <input formControlName="point" matInput placeholder="Enter Point" class="mat-body">
+            <mat-error *ngIf="ruleForm.get('point').errors?.pattern" class="mat-small">
+                Points should be Numeric
+            </mat-error>
+        </mat-form-field>
+    </section>
+    <section fxLayout="row" class="point" fxLayoutGap="3.5%">
+        <h1 class="awardHeader mat-h3">Badge</h1>
+        <mat-icon class="awardIcon">chevron_right</mat-icon>
+        <mat-form-field>
+            <input formControlName="badge" readonly matInput placeholder="Badge Name" [value]="issuerName" class="mat-body">
+        </mat-form-field>
+        <mat-icon class="awardIcon add" matTooltip="Select a Badge" (click)="onAwardTypeSelection()">stars</mat-icon>
+        <!-- <img class="awardIcon add" matTooltip="Select a Badge" (click)="onAwardTypeSelection()" src="../../../assets/images/badge-icon.png" alt="Configure rule"> -->
+    </section>
+    <!-- <section formArrayName="award" fxLayout="column" fxLayoutGap="10px"> -->
+    <!-- <section *ngFor="let group of awardArray.controls; let i = index;" [formGroupName]="i" class="expression-container"> -->
+    <!-- <mat-icon class="icon">chevron_right</mat-icon> -->
+    <!-- <mat-form-field>
+                <mat-select formControlName="awardType" placeholder="Award Type">
+                    <mat-option *ngFor="let award of awards" [value]="award" class="mat-body">{{award}}</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+    <!-- <mat-form-field> -->
+    <!-- <mat-select formControlName="awardType" placeholder="Award Type"> -->
+    <!-- <mat-option *ngFor="let award of awards" (click)="onAwardTypeSelection(award)" [value]="award">{{award}}</mat-option> -->
+    <!-- </mat-select> -->
+    <!-- </mat-form-field> -->
+    <!-- <mat-form-field> -->
+    <!-- <input formControlName="awardValue" *ngIf="!notAward" [value]="issuerAward.name" matInput placeholder="Value"> -->
+    <!-- <input formControlName="awardValue" *ngIf="notAward" matInput placeholder="Value"> -->
+    <!-- </mat-form-field> -->
+    <!-- <mat-select *ngIf="dropDown" formControlName="awardValue" placeholder="Award Value">
+                    <mat-option *ngFor="let issuerAward of issuerAwards" [value]="issuerAward.badgeClassId" class="mat-body">{{issuerAward.name}}</mat-option>
+                </mat-select> -->
+    <!-- </mat-form-field> -->
+    <!-- <button (click)="addAward(i)" color="accent" mat-raised-button type="button" [disabled]="ruleForm.value.award[i].awardType == 0 || ruleForm.value.award[i].awardValue == 0">ADD</button> -->
+    <!-- <button (click)="removeAward(i)" *ngIf="hideFirstField(i)" color="warn" mat-raised-button type="button">REMOVE -->
+    <!-- </button> -->
+    <!-- </section> -->
+    <!-- </section> -->
+    <section>
+
+        <button *ngIf="!editButton" [disabled]="!ruleForm.valid" class="submitButton" color="primary" mat-raised-button type="submit">Save
+            </button>
+        <button *ngIf="editButton" [disabled]="!ruleForm.valid" class="submitButton" color="primary" mat-raised-button type="submit">Update
+                </button>
+        <!-- <section class="response" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" *ngIf="display">
+            <h2>{{response}}
+            </h2>
+            <mat-icon class="icon" (click)="clearResponse()">cancel</mat-icon>
+        </section> -->
+    </section>
+</form>

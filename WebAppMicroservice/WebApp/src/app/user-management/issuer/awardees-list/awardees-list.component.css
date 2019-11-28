@@ -1,0 +1,29 @@
+.example-container {
+  overflow: auto;
+  margin-left: 2%;
+  width: 96%;
+}
+
+.awardeelist-tbl {
+  width: 100%;
+}
+
+.awardeelist-btn {
+  height: 30px;
+  line-height: 10px;
+}
+
+tr.mat-footer-row,
+tr.mat-row {
+  height: 40px !important;
+}
+
+.eye-icon-view {
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

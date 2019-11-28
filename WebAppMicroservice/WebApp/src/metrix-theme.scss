@@ -1,0 +1,26 @@
+@import '~@angular/material/theming';
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+@include mat-core();
+$metrix-prime: (50: #e5e6ee, 100: #bdc1d4, 200: #9298b7, 300: #666f9a, 400: #455085, 500: #24316f, 600: #202c67, 700: #1b255c, 800: #161f52, 900: #0d1340, A100: #7a86ff, A200: #4758ff, A400: #1429ff, A700: #0017f9, contrast: (50: #000000, 100: #000000, 200: #000000, 300: #ffffff, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #ffffff, A400: #ffffff, A700: #ffffff));
+$metrix-accent: (50: #F1FFF5, 100: #DBFEE6, 200: #C3FED6, 300: #ABFEC6, 400: #99FDB9, 500: #87FDAD, 600: #7FFDA6, 700: #74FC9C, 800: #6AFC93, 900: #57FC83, A100: #FFFFFF, A200: #FFFFFF, A400: #F8FFFA, A700: #DFFFE7, contrast: (50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #000000, 500: #000000, 600: #000000, 700: #000000, 800: #000000, 900: #000000, A100: #000000, A200: #000000, A400: #000000, A700: #000000));
+$metrix-warn: (50: #fae5e7, 100: #f3bfc4, 200: #eb949c, 300: #e26974, 400: #dc4857, 500: #d62839, 600: #d12433, 700: #cc1e2c, 800: #c61824, 900: #bc0f17, A100: #ffeaea, A200: #ffb7b9, A400: #ff8488, A700: #ff6a6f, contrast: (50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #000000, A700: #000000));
+$metrix-app-primary: mat-palette($metrix-prime);
+$metrix-app-accent: mat-palette($metrix-accent);
+$metrix-app-warn: mat-palette($metrix-warn);
+$metrix-app-theme: mat-light-theme($metrix-app-primary, $metrix-app-accent, $metrix-app-warn);
+@include angular-material-theme($metrix-app-theme);
+$metrix-app-typography: mat-typography-config($font-family: '"Roboto","Helvetica Neue","sans-serif","monospace', $headline: mat-typography-level(32px, 48px, 700), $body-1: mat-typography-level(16px, 24px, 500));
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($metrix-app-typography);
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($metrix-app-typography);
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($metrix-app-typography);
